@@ -1,0 +1,68 @@
+export const ch33QuickCheck = [
+  {
+    id: 'ch33-q1',
+    type: 'single',
+    question: 'SN2 反应产物的立体化学特征是什么？',
+    options: [
+      { id: 'a', text: '构型完全翻转（Walden inversion）' },
+      { id: 'b', text: '产物为外消旋混合物' },
+      { id: 'c', text: '构型保持不变' },
+      { id: 'd', text: '只生成 R 构型产物' },
+    ],
+    correctIds: ['a'],
+    explanation: 'SN2 反应中，亲核试剂从离去基团的背面进攻，过渡态为五配位"伞状"结构，产物构型完全翻转（Walden inversion）。SN1 因经过碳正离子中间体（两面均可进攻）才产生外消旋体。',
+  },
+  {
+    id: 'ch33-q2',
+    type: 'single',
+    question: '下列哪种条件最有利于发生 SN2 反应？',
+    options: [
+      { id: 'a', text: '叔卤代烷 + 弱亲核试剂 + 极性质子溶剂（如水）' },
+      { id: 'b', text: '伯卤代烷 + 强亲核试剂 + 极性非质子溶剂（如 DMSO）' },
+      { id: 'c', text: '叔卤代烷 + 强碱 + 非质子溶剂' },
+      { id: 'd', text: '仲卤代烷 + 弱碱 + 极性质子溶剂' },
+    ],
+    correctIds: ['b'],
+    explanation: 'SN2 偏好：① 伯卤代烷（空间位阻小，有利于背面进攻）；② 强亲核试剂（增加速率）；③ 极性非质子溶剂（不溶剂化亲核试剂，保留其活性）。选 A 描述的是 SN1 条件；选 C 会优先发生 E2 消除。',
+  },
+  {
+    id: 'ch33-q3',
+    type: 'single',
+    question: '在逆合成分析中，"切断（Disconnection）"操作的目的是什么？',
+    options: [
+      { id: 'a', text: '将目标分子中的化学键实际断开，生成两种中间体' },
+      { id: 'b', text: '想象性地断开目标分子的键，识别可行的前体原料' },
+      { id: 'c', text: '通过加热将大分子裂解为小分子' },
+      { id: 'd', text: '预测反应的过渡态结构' },
+    ],
+    correctIds: ['b'],
+    explanation: '逆合成分析中的切断是一种<strong>思维工具</strong>，不是实际的化学操作。用符号 ⟹ 表示"逆向推导"，将目标分子想象性地断开为更简单的前体，再寻找这些前体的真实合成等效体。Corey 将这一方法系统化并获得 1990 年诺贝尔化学奖。',
+  },
+  {
+    id: 'ch33-q4',
+    type: 'multi',
+    question: '下列哪些因素会使 E2 消除反应相较于 SN2 取代反应更具竞争优势？（可多选）',
+    options: [
+      { id: 'a', text: '使用强体积大的碱（如 t-BuOK）' },
+      { id: 'b', text: '升高反应温度' },
+      { id: 'c', text: '底物为叔卤代烷' },
+      { id: 'd', text: '使用弱亲核试剂（如 H₂O）' },
+      { id: 'e', text: '使用极性非质子溶剂（如 DMSO）' },
+    ],
+    correctIds: ['a', 'b', 'c'],
+    explanation: '① 大体积强碱（t-BuOK）因空间位阻难以接近中心碳，转而从 β-H 处进攻，有利于 E2；② 升温有利于活化能较高的消除反应（熵驱动）；③ 叔卤代烷空间位阻大，不利于 SN2 背面进攻，更倾向消除。使用弱亲核试剂（D）有利于 SN1/E1；极性非质子溶剂（E）有利于 SN2 而非消除。',
+  },
+  {
+    id: 'ch33-q5',
+    type: 'single',
+    question: 'AiZynthFinder 是一款 AI 逆合成工具，它主要使用哪种方法来搜索合成路线？',
+    options: [
+      { id: 'a', text: '暴力枚举所有可能的反应模板组合' },
+      { id: 'b', text: '蒙特卡洛树搜索（MCTS）结合神经网络策略函数' },
+      { id: 'c', text: '纯粹基于热力学计算预测反应可行性' },
+      { id: 'd', text: '只能使用已知的 Corey 逆合成规则进行匹配' },
+    ],
+    correctIds: ['b'],
+    explanation: 'AiZynthFinder 由 AstraZeneca 开发，采用<strong>蒙特卡洛树搜索（MCTS）</strong>探索合成树，并用<strong>神经网络</strong>作为策略函数来评估每步切断的可行性。这种方法能高效搜索庞大的反应空间，同时避免暴力枚举。该工具已开源，在工业界有广泛应用。',
+  },
+]

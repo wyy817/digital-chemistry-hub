@@ -9,6 +9,7 @@ import FunctionalGroups from './pages/learn/FunctionalGroups'
 import Smiles from './pages/learn/Smiles'
 import MolecularProperties from './pages/learn/MolecularProperties'
 import DrugDiscoveryPipeline from './pages/learn/DrugDiscoveryPipeline'
+import ReactionMechanisms from './pages/learn/ReactionMechanisms'
 
 function RequireAuth({ children }) {
   const { user, loading } = useAuth()
@@ -35,6 +36,7 @@ function AppRoutes() {
       <Route path="/learn/ch2-smiles" element={<RequireAuth><Smiles /></RequireAuth>} />
       <Route path="/learn/ch3-molecular-properties" element={<RequireAuth><MolecularProperties /></RequireAuth>} />
       <Route path="/learn/ch3-drug-discovery-pipeline" element={<RequireAuth><DrugDiscoveryPipeline /></RequireAuth>} />
+      <Route path="/learn/ch3-reaction-mechanisms" element={<RequireAuth><ReactionMechanisms /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

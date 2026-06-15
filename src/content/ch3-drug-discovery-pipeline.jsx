@@ -7,7 +7,7 @@ export const ch3DrugDiscoveryPipelineMeta = {
   estimatedMinutes: 40,
   difficulty: '🔴 重点',
   prev: { id: 'ch3-1-molecular-properties', title: 'Molecular Properties & ADMET', path: '/learn/ch3-molecular-properties' },
-  next: null,
+  next: { id: 'ch3-3-reaction-mechanisms', title: 'Reaction Mechanisms & Retrosynthesis', path: '/learn/ch3-reaction-mechanisms' },
 }
 
 export function Ch3DrugDiscoveryPipelineContent() {
