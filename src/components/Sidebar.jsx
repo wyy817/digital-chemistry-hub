@@ -12,7 +12,8 @@ const NAV_STRUCTURE = [
         label: 'Ch1. Atoms & Chemical Bonds',
         lessons: [
           { id: 'ch1-1-atomic-structure', label: '1.1 Atomic Structure', path: '/learn/ch1-atomic-structure' },
-          { id: 'ch1-2-chemical-bonds', label: '1.2 Chemical Bonds', path: '/learn/ch1-chemical-bonds', comingSoon: true },
+          { id: 'ch1-2-chemical-bonds', label: '1.2 Chemical Bonds', path: '/learn/ch1-chemical-bonds' },
+          { id: 'ch1-3-molecular-shape', label: '1.3 Molecular Shape & Chirality', path: '/learn/ch1-molecular-shape' },
         ],
       },
       {
