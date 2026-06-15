@@ -38,8 +38,14 @@ const NAV_STRUCTURE = [
     label: 'Cheminformatics',
     labelZh: '化学信息学',
     icon: '🔬',
-    comingSoon: true,
-    chapters: [],
+    chapters: [
+      {
+        label: 'Ch4. RDKit & Cheminformatics',
+        lessons: [
+          { id: 'ch4-1-rdkit-basics', label: '4.1 RDKit Basics', path: '/learn/ch4-rdkit-basics' },
+        ],
+      },
+    ],
   },
   {
     id: 'ai-drug-discovery',

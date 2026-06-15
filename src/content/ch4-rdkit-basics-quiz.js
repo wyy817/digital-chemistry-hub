@@ -1,0 +1,68 @@
+export const ch41QuickCheck = [
+  {
+    id: 'ch41-q1',
+    type: 'single',
+    question: '使用 RDKit 从 SMILES 字符串读取分子时，应该调用哪个函数？',
+    options: [
+      { id: 'a', text: 'Chem.MolFromSmiles()' },
+      { id: 'b', text: 'Chem.ReadMolecule()' },
+      { id: 'c', text: 'Chem.ParseSmiles()' },
+      { id: 'd', text: 'Chem.LoadMol()' },
+    ],
+    correctIds: ['a'],
+    explanation: '<code>Chem.MolFromSmiles()</code> 是 RDKit 中从 SMILES 读取分子的标准函数。若 SMILES 无效，它返回 <code>None</code>，因此使用前需要检查返回值。它会自动调用 <code>SanitizeMol()</code> 对分子进行验证和标准化。',
+  },
+  {
+    id: 'ch41-q2',
+    type: 'single',
+    question: '计算一个分子的 <strong>极性表面积（TPSA）</strong> 应使用哪个 RDKit 函数？',
+    options: [
+      { id: 'a', text: 'Descriptors.MolLogP(mol)' },
+      { id: 'b', text: 'rdMolDescriptors.CalcTPSA(mol)' },
+      { id: 'c', text: 'Descriptors.TPSA(mol)' },
+      { id: 'd', text: 'Chem.CalcPolarSurface(mol)' },
+    ],
+    correctIds: ['b'],
+    explanation: 'TPSA 由 <code>rdMolDescriptors.CalcTPSA(mol)</code> 计算，单位为 Å²。TPSA &lt; 140 Å² 是 Lipinski Ro5 延伸规则之一，与口服吸收和血脑屏障穿透性密切相关。注意：<code>Descriptors.MolLogP()</code> 计算的是亲脂性 LogP，不是 TPSA。',
+  },
+  {
+    id: 'ch41-q3',
+    type: 'single',
+    question: '在 RDKit 中，<code>mol.HasSubstructMatch(pattern)</code> 的 <code>pattern</code> 参数应该是什么类型？',
+    options: [
+      { id: 'a', text: '一个 SMILES 字符串，如 "C(=O)O"' },
+      { id: 'b', text: '一个用 Chem.MolFromSmarts() 解析的 Mol 对象' },
+      { id: 'c', text: '一个正则表达式字符串' },
+      { id: 'd', text: '一个原子索引列表' },
+    ],
+    correctIds: ['b'],
+    explanation: '子结构搜索的 pattern 必须是一个 <strong>Mol 对象</strong>，通过 <code>Chem.MolFromSmarts(smarts_str)</code> 解析 SMARTS 字符串得到。直接传入 SMILES 字符串会报错。SMARTS 比 SMILES 更灵活，支持通配符和原子环境约束，是官能团识别的标准工具。',
+  },
+  {
+    id: 'ch41-q4',
+    type: 'multi',
+    question: '下列哪些描述符属于 Lipinski Ro5 的直接判断标准？（可多选）',
+    options: [
+      { id: 'a', text: '分子量（MW）≤ 500' },
+      { id: 'b', text: 'LogP ≤ 5' },
+      { id: 'c', text: 'TPSA ≤ 140 Å²' },
+      { id: 'd', text: '氢键供体数（HBD）≤ 5' },
+      { id: 'e', text: '氢键受体数（HBA）≤ 10' },
+    ],
+    correctIds: ['a', 'b', 'd', 'e'],
+    explanation: 'Lipinski Ro5 的四项标准是：MW ≤ 500、LogP ≤ 5、HBD ≤ 5、HBA ≤ 10。<strong>TPSA ≤ 140 Å²</strong> 是后来加入的延伸规则（Veber 规则之一），与口服生物利用度和肠道渗透性相关，但不属于 Ro5 原始定义。两者都常用，需区分。',
+  },
+  {
+    id: 'ch41-q5',
+    type: 'single',
+    question: 'RDKit 中用于批量读取 SDF 格式分子文件的类是？',
+    options: [
+      { id: 'a', text: 'Chem.MolReader("file.sdf")' },
+      { id: 'b', text: 'Chem.SDMolSupplier("file.sdf")' },
+      { id: 'c', text: 'Chem.BatchLoad("file.sdf")' },
+      { id: 'd', text: 'Chem.MolFromFile("file.sdf")' },
+    ],
+    correctIds: ['b'],
+    explanation: '<code>Chem.SDMolSupplier()</code> 返回一个可迭代对象，逐个读取 SDF 文件中的分子。标准用法是 <code>mols = [m for m in suppl if m is not None]</code>，过滤掉解析失败的条目。SDF（Structure Data File）是化学数据库（如 ChEMBL、PubChem）批量下载时的主要格式。',
+  },
+]
