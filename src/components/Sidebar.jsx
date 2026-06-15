@@ -23,6 +23,12 @@ const NAV_STRUCTURE = [
           { id: 'ch2-2-smiles', label: '2.2 SMILES & Mol. Repr.', path: '/learn/ch2-smiles' },
         ],
       },
+      {
+        label: 'Ch3. Drug-like Properties',
+        lessons: [
+          { id: 'ch3-1-molecular-properties', label: '3.1 Molecular Properties & ADMET', path: '/learn/ch3-molecular-properties' },
+        ],
+      },
     ],
   },
   {

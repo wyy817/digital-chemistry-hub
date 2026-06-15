@@ -7,7 +7,7 @@ export const ch2SmilesMeta = {
   estimatedMinutes: 40,
   difficulty: '🔴 重点',
   prev: { id: 'ch2-1-functional-groups', title: 'Functional Groups', path: '/learn/ch2-functional-groups' },
-  next: null,
+  next: { id: 'ch3-1-molecular-properties', title: 'Molecular Properties & ADMET', path: '/learn/ch3-molecular-properties' },
 }
 
 export function Ch2SmilesContent() {
