@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import AtomicStructure from './pages/learn/AtomicStructure'
 import ChemicalBonds from './pages/learn/ChemicalBonds'
 import MolecularShape from './pages/learn/MolecularShape'
+import FunctionalGroups from './pages/learn/FunctionalGroups'
 
 function RequireAuth({ children }) {
   const { user, loading } = useAuth()
@@ -27,6 +28,7 @@ function AppRoutes() {
       <Route path="/learn/ch1-atomic-structure" element={<RequireAuth><AtomicStructure /></RequireAuth>} />
       <Route path="/learn/ch1-chemical-bonds" element={<RequireAuth><ChemicalBonds /></RequireAuth>} />
       <Route path="/learn/ch1-molecular-shape" element={<RequireAuth><MolecularShape /></RequireAuth>} />
+      <Route path="/learn/ch2-functional-groups" element={<RequireAuth><FunctionalGroups /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

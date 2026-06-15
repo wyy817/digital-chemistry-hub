@@ -18,8 +18,9 @@ const NAV_STRUCTURE = [
       },
       {
         label: 'Ch2. Organic Chemistry Basics',
-        comingSoon: true,
-        lessons: [],
+        lessons: [
+          { id: 'ch2-1-functional-groups', label: '2.1 Functional Groups', path: '/learn/ch2-functional-groups' },
+        ],
       },
     ],
   },

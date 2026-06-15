@@ -7,7 +7,7 @@ export const ch1MolecularShapeMeta = {
   estimatedMinutes: 35,
   difficulty: '🟡 进阶',
   prev: { id: 'ch1-2-chemical-bonds', title: 'Chemical Bonds', path: '/learn/ch1-chemical-bonds' },
-  next: null,
+  next: { id: 'ch2-1-functional-groups', title: 'Functional Groups', path: '/learn/ch2-functional-groups' },
 }
 
 export function Ch1MolecularShapeContent() {
