@@ -7,7 +7,7 @@ export const ch2FunctionalGroupsMeta = {
   estimatedMinutes: 35,
   difficulty: '🟡 进阶',
   prev: { id: 'ch1-3-molecular-shape', title: 'Molecular Shape & Chirality', path: '/learn/ch1-molecular-shape' },
-  next: null,
+  next: { id: 'ch2-2-smiles', title: 'SMILES & Molecular Representation', path: '/learn/ch2-smiles' },
 }
 
 export function Ch2FunctionalGroupsContent() {
