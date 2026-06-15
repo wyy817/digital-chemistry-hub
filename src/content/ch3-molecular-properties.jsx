@@ -7,7 +7,7 @@ export const ch3MolecularPropertiesMeta = {
   estimatedMinutes: 45,
   difficulty: '🔴 重点',
   prev: { id: 'ch2-2-smiles', title: 'SMILES & Molecular Representation', path: '/learn/ch2-smiles' },
-  next: null,
+  next: { id: 'ch3-2-drug-discovery-pipeline', title: 'Drug Discovery Pipeline', path: '/learn/ch3-drug-discovery-pipeline' },
 }
 
 export function Ch3MolecularPropertiesContent() {

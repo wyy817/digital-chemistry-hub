@@ -27,6 +27,7 @@ const NAV_STRUCTURE = [
         label: 'Ch3. Drug-like Properties',
         lessons: [
           { id: 'ch3-1-molecular-properties', label: '3.1 Molecular Properties & ADMET', path: '/learn/ch3-molecular-properties' },
+          { id: 'ch3-2-drug-discovery-pipeline', label: '3.2 Drug Discovery Pipeline', path: '/learn/ch3-drug-discovery-pipeline' },
         ],
       },
     ],
