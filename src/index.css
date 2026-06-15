@@ -4,7 +4,7 @@
 :root {
   --color-primary: #1e40af;
   --color-primary-light: #3b82f6;
-  --color-bg: #f8fafc;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
   --color-border: #e2e8f0;
   --color-text: #1e293b;
@@ -419,8 +419,8 @@ body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background:
 .path-card-action:hover { text-decoration: underline; }
 .path-card-action.disabled { color: var(--color-text-muted); pointer-events: none; }
 .countdown-card {
-  border: 1px solid #bfdbfe; border-radius: 12px; padding: 1.25rem;
-  background: #eff6ff; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2.5rem;
+  border: 1px solid var(--color-border); border-radius: 12px; padding: 1.25rem;
+  background: #f8fafc; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2.5rem;
 }
 .countdown-icon { font-size: 2.5rem; }
 .countdown-days { font-size: 2rem; font-weight: 800; color: var(--color-primary); }
