@@ -1,0 +1,68 @@
+export const ch42QuickCheck = [
+  {
+    id: 'q1',
+    type: 'single',
+    question: 'ECFP4 指纹中"4"代表什么？/ What does "4" in ECFP4 mean?',
+    options: [
+      { id: 'a', text: '向量长度为 4 bits / Vector length is 4 bits' },
+      { id: 'b', text: '邻域直径为 4（即半径为 2）/ Neighborhood diameter of 4 (radius = 2)' },
+      { id: 'c', text: '最多捕获 4 种子结构 / Captures at most 4 substructures' },
+      { id: 'd', text: 'RDKit 的版本号 / RDKit version number' },
+    ],
+    correctIds: ['b'],
+    explanation: 'ECFP<n> 中的 n 是"直径"（diameter），等于 2 × 半径。ECFP4 = 半径 2，从每个原子向外扩展 2 层邻居。药物发现中最常用 ECFP4（半径 2，2048 bits）。',
+  },
+  {
+    id: 'q2',
+    type: 'single',
+    question: '将一个分子与自身计算 Tanimoto 相似性，结果是多少？/ What is the Tanimoto similarity of a molecule with itself?',
+    options: [
+      { id: 'a', text: '0.0' },
+      { id: 'b', text: '0.5' },
+      { id: 'c', text: '1.0' },
+      { id: 'd', text: '取决于指纹类型 / Depends on fingerprint type' },
+    ],
+    correctIds: ['c'],
+    explanation: 'Tanimoto(A, A) = |A∩A| / |A∪A| = |A| / |A| = 1.0。任何分子与自身的 Tanimoto 相似性恒为 1.0，与指纹类型无关。',
+  },
+  {
+    id: 'q3',
+    type: 'multi',
+    question: '以下哪些是分子指纹的合理应用场景？（多选）/ Which are valid applications of molecular fingerprints? (Multi-select)',
+    options: [
+      { id: 'a', text: 'QSAR 模型的特征输入 / Feature input for QSAR models' },
+      { id: 'b', text: '虚拟化合物库相似性筛选 / Similarity-based virtual screening' },
+      { id: 'c', text: '精确预测分子的熔点 / Precisely predicting melting point' },
+      { id: 'd', text: '化合物聚类与多样性分析 / Compound clustering and diversity analysis' },
+      { id: 'e', text: '确定分子的绝对构型 (R/S) / Determining absolute configuration (R/S)' },
+    ],
+    correctIds: ['a', 'b', 'd'],
+    explanation: 'QSAR 建模、相似性虚拟筛选、聚类分析都是分子指纹的核心用途。熔点预测需要更精确的描述符而非单纯指纹；绝对构型（R/S）是三维立体信息，标准 ECFP 不编码。',
+  },
+  {
+    id: 'q4',
+    type: 'single',
+    question: 'MACCS Keys 指纹的标准长度是多少 bits？/ What is the standard length of MACCS Keys?',
+    options: [
+      { id: 'a', text: '128 bits' },
+      { id: 'b', text: '166 bits' },
+      { id: 'c', text: '1024 bits' },
+      { id: 'd', text: '2048 bits' },
+    ],
+    correctIds: ['b'],
+    explanation: 'MACCS Keys 由 MDL 定义了 166 个固定的结构键（bit 0 保留，位 1–166 有效），每个 bit 对应一条预设 SMARTS 规则。因此 GetNumBits() 返回 167，但有效位为 166。',
+  },
+  {
+    id: 'q5',
+    type: 'single',
+    question: '用 RDKit 计算两个分子指纹的 Tanimoto 相似性，应使用哪个函数？/ Which function computes Tanimoto similarity in RDKit?',
+    options: [
+      { id: 'a', text: 'DataStructs.TanimotoSimilarity(fp1, fp2)' },
+      { id: 'b', text: 'AllChem.GetSimilarity(mol1, mol2)' },
+      { id: 'c', text: 'Chem.TanimotoCoeff(mol1, mol2)' },
+      { id: 'd', text: 'rdkit.similarity(fp1, fp2, method="tanimoto")' },
+    ],
+    correctIds: ['a'],
+    explanation: 'RDKit 中 Tanimoto 相似性通过 DataStructs.TanimotoSimilarity(fp1, fp2) 计算，两个参数均为 ExplicitBitVect 对象。批量计算用 DataStructs.BulkTanimotoSimilarity(query_fp, fps_list)。',
+  },
+]

@@ -7,7 +7,7 @@ export const ch4RdkitBasicsMeta = {
   estimatedMinutes: 50,
   difficulty: '🔴 重点',
   prev: null,
-  next: null,
+  next: { title: '4.2 Molecular Fingerprints & Similarity', path: '/learn/ch4-fingerprints' },
 }
 
 export function Ch4RdkitBasicsContent() {

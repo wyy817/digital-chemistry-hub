@@ -43,6 +43,7 @@ const NAV_STRUCTURE = [
         label: 'Ch4. RDKit & Cheminformatics',
         lessons: [
           { id: 'ch4-1-rdkit-basics', label: '4.1 RDKit Basics', path: '/learn/ch4-rdkit-basics' },
+          { id: 'ch4-2-fingerprints', label: '4.2 Molecular Fingerprints', path: '/learn/ch4-fingerprints' },
         ],
       },
     ],
