@@ -1,0 +1,67 @@
+export const ch51QuickCheck = [
+  {
+    id: 'q1',
+    type: 'single',
+    question: '开发一款新药平均需要多长时间和多少费用（Tufts CSDD 2014 估算）？',
+    options: [
+      { id: 'a', text: '3–5 年，约 5 亿美元' },
+      { id: 'b', text: '10–15 年，超过 26 亿美元' },
+      { id: 'c', text: '5–8 年，约 10 亿美元' },
+      { id: 'd', text: '15–20 年，超过 50 亿美元' },
+    ],
+    correct: ['b'],
+    explanation: '根据 Tufts 药物开发研究中心（CSDD）2014 年的估算，开发一款新药平均耗时 10–15 年，花费超过 26 亿美元。这一数字涵盖了从靶点发现到上市批准的全流程，包括失败项目的成本摊销。',
+  },
+  {
+    id: 'q2',
+    type: 'single',
+    question: '在药物发现流程中，"候选药物（Drug Candidate）"出现在哪个阶段之后？',
+    options: [
+      { id: 'a', text: '靶点识别之后' },
+      { id: 'b', text: '苗头化合物（Hit）发现之后' },
+      { id: 'c', text: '先导化合物优化（Lead Optimization）之后' },
+      { id: 'd', text: '临床 I 期试验之后' },
+    ],
+    correct: ['c'],
+    explanation: '流程顺序为：靶点识别 → Hit 发现 → Hit-to-Lead（H2L）→ Lead Optimization（LO）→ 候选药物（Drug Candidate）→ 临床前 → 临床试验。候选药物是先导化合物经过全面优化后得到的，具备进入临床前研究的条件。',
+  },
+  {
+    id: 'q3',
+    type: 'single',
+    question: 'AlphaFold 2 的主要贡献是什么？',
+    options: [
+      { id: 'a', text: '直接设计出可上市的小分子药物' },
+      { id: 'b', text: '以原子级精度预测蛋白质的三维结构' },
+      { id: 'c', text: '自动合成化合物并测试其活性' },
+      { id: 'd', text: '预测临床试验的成功率' },
+    ],
+    correct: ['b'],
+    explanation: 'AlphaFold 2（DeepMind，2020）以原子级精度预测蛋白质三维结构，解决了困扰生物学界 50 年的"蛋白质折叠问题"。它已预测超过 2 亿个蛋白质结构，为靶点识别和分子对接提供了前所未有的结构基础，但它本身不直接设计小分子药物。',
+  },
+  {
+    id: 'q4',
+    type: 'multiple',
+    question: 'AI 能够在药物发现的哪些阶段发挥作用？（多选）',
+    options: [
+      { id: 'a', text: '靶点识别：从基因组数据预测致病蛋白' },
+      { id: 'b', text: '分子生成：从零设计满足目标性质的全新分子' },
+      { id: 'c', text: 'ADMET 预测：提前预测分子在体内的吸收与毒性' },
+      { id: 'd', text: '替代 III 期临床试验：用 AI 模拟人体反应' },
+    ],
+    correct: ['a', 'b', 'c'],
+    explanation: 'AI 在靶点识别、虚拟筛选、分子生成、ADMET 预测、合成路线规划等阶段都能发挥作用（a、b、c 正确）。但 d 错误——临床试验涉及人体安全性验证，AI 目前无法替代，监管机构也要求真实的人体数据。AI 的主要价值在于提高进入临床的候选药物质量，降低临床失败率。',
+  },
+  {
+    id: 'q5',
+    type: 'single',
+    question: '类药化学空间约有多大，为什么传统高通量筛选（HTS）无法覆盖？',
+    options: [
+      { id: 'a', text: '约 10⁶ 个分子，HTS 已经能完全覆盖' },
+      { id: 'b', text: '约 10²⁰ 个分子，HTS 只能覆盖一小部分' },
+      { id: 'c', text: '约 10⁶⁰ 个分子，穷举需要比宇宙年龄还长的时间' },
+      { id: 'd', text: '约 10¹⁰⁰ 个分子，化学合成技术完全无法触及' },
+    ],
+    correct: ['c'],
+    explanation: '类药化学空间估计约为 10⁶⁰ 个分子（Bohacek et al., 1996 等多项估算）。即使每秒筛选 10⁹ 个分子，穷举所有分子仍需 10⁵¹ 秒，远超宇宙年龄（约 4×10¹⁷ 秒）。传统 HTS 每个项目只能测试约 10⁶–10⁷ 个分子。AI 的价值在于有方向地搜索，而不是随机抽样。',
+  },
+]

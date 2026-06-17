@@ -54,8 +54,16 @@ const NAV_STRUCTURE = [
     label: 'AI in Drug Discovery',
     labelZh: 'AI 药物发现',
     icon: '💊',
-    comingSoon: true,
-    chapters: [],
+    chapters: [
+      {
+        label: 'Ch5. Drug Discovery Pipeline',
+        lessons: [
+          { id: 'ch5-1-drug-pipeline-overview', label: '5.1 Pipeline Overview', path: '/learn/ch5-drug-pipeline-overview' },
+          { id: 'ch5-2-target-identification', label: '5.2 Target Identification', path: '/learn/ch5-target-identification' },
+          { id: 'ch5-3-hit-lead-candidate', label: '5.3 Hit / Lead / Candidate', path: '/learn/ch5-hit-lead-candidate' },
+        ],
+      },
+    ],
   },
 ]
 

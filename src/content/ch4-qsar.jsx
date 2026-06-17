@@ -7,7 +7,7 @@ export const ch4QsarMeta = {
   estimatedMinutes: 55,
   difficulty: '🔴 重点',
   prev: { title: '4.2 Molecular Fingerprints', path: '/learn/ch4-fingerprints' },
-  next: null,
+  next: { title: '5.1 Pipeline Overview', path: '/learn/ch5-drug-pipeline-overview' },
 }
 
 export function Ch4QsarContent() {

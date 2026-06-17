@@ -13,6 +13,9 @@ import ReactionMechanisms from './pages/learn/ReactionMechanisms'
 import RdkitBasics from './pages/learn/RdkitBasics'
 import Fingerprints from './pages/learn/Fingerprints'
 import QsarModeling from './pages/learn/QsarModeling'
+import DrugPipelineOverview from './pages/learn/DrugPipelineOverview'
+import TargetIdentification from './pages/learn/TargetIdentification'
+import HitLeadCandidate from './pages/learn/HitLeadCandidate'
 
 function AppRoutes() {
   return (
@@ -30,6 +33,9 @@ function AppRoutes() {
       <Route path="/learn/ch4-rdkit-basics" element={<RdkitBasics />} />
       <Route path="/learn/ch4-fingerprints" element={<Fingerprints />} />
       <Route path="/learn/ch4-qsar" element={<QsarModeling />} />
+      <Route path="/learn/ch5-drug-pipeline-overview" element={<DrugPipelineOverview />} />
+      <Route path="/learn/ch5-target-identification" element={<TargetIdentification />} />
+      <Route path="/learn/ch5-hit-lead-candidate" element={<HitLeadCandidate />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
