@@ -54,7 +54,7 @@ const MODULES = [
 
 const N = MODULES.length
 const STEP = 360 / N   // 90 degrees per card
-const RADIUS = 360     // px from center to card
+const RADIUS = 260     // px from center to card
 
 // Animated molecular network background canvas
 function MolBg() {
@@ -217,12 +217,16 @@ export default function MolecularDirectory() {
       onMouseDown={onDown} onMouseMove={onMove} onMouseUp={onUp}
       onMouseLeave={() => { drag.current = null }}
       onTouchStart={onDown} onTouchMove={onMove} onTouchEnd={onUp}
-      style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', userSelect: 'none' }}
+      style={{
+        position: 'relative', width: '100vw', height: '100vh',
+        overflow: 'hidden', userSelect: 'none',
+        display: 'flex', flexDirection: 'column',
+      }}
     >
       <MolBg />
 
       {/* Header */}
-      <header style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '5.5vh' }}>
+      <header style={{ position: 'relative', zIndex: 10, flexShrink: 0, textAlign: 'center', paddingTop: '4vh', paddingBottom: '1.5vh' }}>
         <h1 style={{
           margin: 0, fontWeight: 800, letterSpacing: '0.05em',
           fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
@@ -237,16 +241,17 @@ export default function MolecularDirectory() {
         </p>
       </header>
 
-      {/* 3D Carousel Stage */}
+      {/* 3D Carousel Stage — flex:1 fills remaining height, overflow:hidden clips 3D */}
       <div style={{
         position: 'relative', zIndex: 5,
-        height: '57vh',
+        flex: 1,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        perspective: '1100px',
+        perspective: '1000px',
+        overflow: 'hidden',
       }}>
+        {/* width:0 height:0 so flex centers the (0,0) origin — cards positioned symmetrically around it */}
         <div style={{
-          width: 300, height: 380,
-          position: 'relative',
+          width: 0, height: 0,
           transformStyle: 'preserve-3d',
           transform: `rotateY(${rot}deg)`,
           transition: 'transform 0.75s cubic-bezier(0.4,0,0.2,1)',
@@ -317,7 +322,7 @@ export default function MolecularDirectory() {
       </div>
 
       {/* Navigation Controls */}
-      <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ position: 'relative', zIndex: 10, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', paddingBottom: '4vh' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
           <ArrowBtn dir="prev" onClick={() => { prev(); resetAuto() }} />
 
