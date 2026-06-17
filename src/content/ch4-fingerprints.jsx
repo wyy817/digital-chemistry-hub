@@ -7,7 +7,7 @@ export const ch4FingerprintsMeta = {
   estimatedMinutes: 45,
   difficulty: '🔴 重点',
   prev: { title: '4.1 RDKit Basics', path: '/learn/ch4-rdkit-basics' },
-  next: null,
+  next: { title: '4.3 QSAR Modeling', path: '/learn/ch4-qsar' },
 }
 
 export function Ch4FingerprintsContent() {

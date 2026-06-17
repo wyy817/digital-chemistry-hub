@@ -44,6 +44,7 @@ const NAV_STRUCTURE = [
         lessons: [
           { id: 'ch4-1-rdkit-basics', label: '4.1 RDKit Basics', path: '/learn/ch4-rdkit-basics' },
           { id: 'ch4-2-fingerprints', label: '4.2 Molecular Fingerprints', path: '/learn/ch4-fingerprints' },
+          { id: 'ch4-3-qsar', label: '4.3 QSAR Modeling', path: '/learn/ch4-qsar' },
         ],
       },
     ],

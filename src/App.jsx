@@ -12,6 +12,7 @@ import DrugDiscoveryPipeline from './pages/learn/DrugDiscoveryPipeline'
 import ReactionMechanisms from './pages/learn/ReactionMechanisms'
 import RdkitBasics from './pages/learn/RdkitBasics'
 import Fingerprints from './pages/learn/Fingerprints'
+import QsarModeling from './pages/learn/QsarModeling'
 
 function RequireAuth({ children }) {
   const { user, loading } = useAuth()
@@ -41,6 +42,7 @@ function AppRoutes() {
       <Route path="/learn/ch3-reaction-mechanisms" element={<RequireAuth><ReactionMechanisms /></RequireAuth>} />
       <Route path="/learn/ch4-rdkit-basics" element={<RequireAuth><RdkitBasics /></RequireAuth>} />
       <Route path="/learn/ch4-fingerprints" element={<RequireAuth><Fingerprints /></RequireAuth>} />
+      <Route path="/learn/ch4-qsar" element={<RequireAuth><QsarModeling /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
