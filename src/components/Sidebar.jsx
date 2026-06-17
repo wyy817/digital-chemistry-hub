@@ -68,6 +68,7 @@ const NAV_STRUCTURE = [
         lessons: [
           { id: 'ch6-1-admet-deep-dive', label: '6.1 ADMET Deep Dive', path: '/learn/ch6-admet-deep-dive' },
           { id: 'ch6-2-drug-likeness', label: '6.2 Drug-likeness & Lead Opt.', path: '/learn/ch6-drug-likeness' },
+          { id: 'ch6-3-molecular-docking', label: '6.3 Molecular Docking & VS', path: '/learn/ch6-molecular-docking' },
         ],
       },
     ],

@@ -7,7 +7,7 @@ export const ch6DrugLikenessMeta = {
   estimatedMinutes: 50,
   difficulty: '🟡 入门',
   prev: { title: '6.1 ADMET Deep Dive', path: '/learn/ch6-admet-deep-dive' },
-  next: null,
+  next: { title: '6.3 Molecular Docking & Virtual Screening', path: '/learn/ch6-molecular-docking' },
 }
 
 export function Ch6DrugLikenessContent() {
