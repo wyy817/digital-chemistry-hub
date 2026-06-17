@@ -63,6 +63,12 @@ const NAV_STRUCTURE = [
           { id: 'ch5-3-hit-lead-candidate', label: '5.3 Hit / Lead / Candidate', path: '/learn/ch5-hit-lead-candidate' },
         ],
       },
+      {
+        label: 'Ch6. ADMET & Drug-likeness',
+        lessons: [
+          { id: 'ch6-1-admet-deep-dive', label: '6.1 ADMET Deep Dive', path: '/learn/ch6-admet-deep-dive' },
+        ],
+      },
     ],
   },
 ]
