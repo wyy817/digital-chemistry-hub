@@ -7,7 +7,7 @@ export const ch6AdmetDeepDiveMeta = {
   estimatedMinutes: 55,
   difficulty: '🟡 入门',
   prev: { title: '5.3 Hit / Lead / Candidate', path: '/learn/ch5-hit-lead-candidate' },
-  next: null,
+  next: { title: '6.2 Drug-likeness & Lead Opt.', path: '/learn/ch6-drug-likeness' },
 }
 
 export function Ch6AdmetDeepDiveContent() {

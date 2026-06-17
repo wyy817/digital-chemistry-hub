@@ -1,0 +1,67 @@
+export const ch62QuickCheck = [
+  {
+    id: 'q1',
+    type: 'single',
+    question: 'Lipinski 五规则（Ro5）中，哪项描述是正确的？',
+    options: [
+      'MW ≤ 500 Da，logP ≤ 5，氢键供体 ≤ 5，氢键受体 ≤ 10',
+      'MW ≤ 500 Da，logP ≤ 5，氢键供体 ≤ 10，氢键受体 ≤ 5',
+      'MW ≤ 600 Da，logP ≤ 5，氢键供体 ≤ 5，氢键受体 ≤ 10',
+      'MW ≤ 500 Da，logP ≤ 3，氢键供体 ≤ 5，氢键受体 ≤ 10',
+    ],
+    answer: 0,
+    explanation: 'Lipinski Ro5：MW ≤ 500 Da，logP ≤ 5，HBD（氢键供体）≤ 5，HBA（氢键受体）≤ 10。注意供体和受体数量不对称。',
+  },
+  {
+    id: 'q2',
+    type: 'single',
+    question: '极性表面积（PSA）主要预测分子的哪项性质？',
+    options: [
+      '分子量大小',
+      '膜渗透性与口服吸收',
+      '水溶液 pKa',
+      '代谢半衰期',
+    ],
+    answer: 1,
+    explanation: 'PSA 衡量分子极性面积，与膜渗透性高度相关。PSA < 90 Å² 通常预示良好口服吸收；PSA > 140 Å² 则吸收显著下降。',
+  },
+  {
+    id: 'q3',
+    type: 'single',
+    question: 'PAINS（Pan-Assay INterference compoundS）化合物最主要的问题是什么？',
+    options: [
+      '分子量过大，无法口服',
+      '溶解度极差，体外测定无法进行',
+      '在多种测定中产生非特异性虚假阳性信号',
+      '对 CYP 酶有强烈抑制作用',
+    ],
+    answer: 2,
+    explanation: 'PAINS 化合物会非特异性干扰多种生化测定（通过聚集、氧化还原循环、荧光等机制），产生泛靶点假阳性，掩盖真实活性信息。',
+  },
+  {
+    id: 'q4',
+    type: 'multi',
+    question: '以下哪些是 Matched Molecular Pair（MMP）分析中常见的结构转化及其预期效果？（选所有正确的）',
+    options: [
+      'H → F（氟化）：提升代谢稳定性',
+      '苯环 → 吡啶：降低 logP，改善溶解度',
+      '引入羟基：增加 PSA，改善溶解度但可能降低渗透性',
+      '增大分子量至 800 Da：提升类药性评分',
+    ],
+    answer: [0, 1, 2],
+    explanation: '氟化提升代谢稳定性（封闭代谢热点），苯→吡啶引入极性氮降低 logP，引入羟基提升溶解度但增加 PSA 可能降低渗透性。增大 MW 超出 Lipinski 限制会降低类药性。',
+  },
+  {
+    id: 'q5',
+    type: 'single',
+    question: '多属性优化（MPO）的核心思想是什么？',
+    options: [
+      '在所有属性中寻找最大化活性（IC₅₀ 最低）的分子',
+      '在效力、ADMET 性质和安全性之间寻找综合最优的平衡点',
+      '只关注溶解度和膜渗透性，忽略活性',
+      '以分子量最小为首要优化目标',
+    ],
+    answer: 1,
+    explanation: 'MPO 将多个属性（活性、溶解度、渗透性、代谢稳定性、安全性等）归一化加权评分，寻找综合表现最佳的分子——而非某单一维度极致的分子。',
+  },
+]

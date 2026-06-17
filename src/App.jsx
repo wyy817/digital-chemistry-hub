@@ -17,6 +17,7 @@ import DrugPipelineOverview from './pages/learn/DrugPipelineOverview'
 import TargetIdentification from './pages/learn/TargetIdentification'
 import HitLeadCandidate from './pages/learn/HitLeadCandidate'
 import AdmetDeepDive from './pages/learn/AdmetDeepDive'
+import DrugLikeness from './pages/learn/DrugLikeness'
 
 function AppRoutes() {
   return (
@@ -38,6 +39,7 @@ function AppRoutes() {
       <Route path="/learn/ch5-target-identification" element={<TargetIdentification />} />
       <Route path="/learn/ch5-hit-lead-candidate" element={<HitLeadCandidate />} />
       <Route path="/learn/ch6-admet-deep-dive" element={<AdmetDeepDive />} />
+      <Route path="/learn/ch6-drug-likeness" element={<DrugLikeness />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

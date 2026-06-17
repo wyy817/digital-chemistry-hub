@@ -70,6 +70,38 @@ const MODULES = [
     to: '/learn/ch4-rdkit-basics',
     chapters: 3,
   },
+  {
+    num: '05',
+    title: 'AI in Drug Discovery',
+    subtitle: 'AI 驱动的药物发现',
+    tag: 'AI · PIPELINE',
+    lines: [
+      'Drug Discovery Pipeline Overview',
+      'Target Identification & Validation',
+      'Hit → Lead → Candidate Selection',
+    ],
+    accent: '#f472b6',
+    glow: '244,114,182',
+    bg: 'linear-gradient(155deg, #0f0008 0%, #250014 55%, #831843 100%)',
+    to: '/learn/ch5-drug-pipeline-overview',
+    chapters: 3,
+  },
+  {
+    num: '06',
+    title: 'ADMET & Drug-likeness',
+    subtitle: '类药性与先导优化',
+    tag: 'ADMET · DMPK',
+    lines: [
+      'ADMET: Absorption, Distribution, Metabolism',
+      'Drug-likeness Rules & Structural Alerts',
+      'Multi-Parameter Optimization (MPO)',
+    ],
+    accent: '#fb923c',
+    glow: '251,146,60',
+    bg: 'linear-gradient(155deg, #0f0500 0%, #200a00 55%, #7c2d12 100%)',
+    to: '/learn/ch6-admet-deep-dive',
+    chapters: 2,
+  },
 ]
 
 // Molecule SVG node/bond data per module
@@ -127,6 +159,38 @@ const VIZ = [
       { x: 320, y: 320, r: 10 },
     ],
     bonds: [[0,1],[1,2],[3,4],[4,5],[6,7],[7,8],[0,3],[3,6],[1,4],[4,7],[2,5],[5,8]],
+  },
+  // 05 – Drug discovery funnel: layered cascade (pipeline stages)
+  {
+    nodes: [
+      { x: 200, y: 60,  r: 28, primary: true },
+      { x: 130, y: 150, r: 16 },
+      { x: 270, y: 150, r: 16 },
+      { x: 90,  y: 240, r: 12 },
+      { x: 200, y: 240, r: 20, primary: true },
+      { x: 310, y: 240, r: 12 },
+      { x: 155, y: 325, r: 10 },
+      { x: 200, y: 345, r: 14 },
+      { x: 245, y: 325, r: 10 },
+    ],
+    bonds: [[0,1],[0,2],[1,3],[1,4],[2,4],[2,5],[4,6],[4,7],[4,8]],
+  },
+  // 06 – Molecular filter: diamond + radial spokes (ADMET / drug-likeness)
+  {
+    nodes: [
+      { x: 200, y: 200, r: 32, primary: true },
+      { x: 200, y: 80,  r: 14 },
+      { x: 310, y: 155, r: 14 },
+      { x: 310, y: 245, r: 14 },
+      { x: 200, y: 320, r: 14 },
+      { x: 90,  y: 245, r: 14 },
+      { x: 90,  y: 155, r: 14 },
+      { x: 200, y: 130, r: 8 },
+      { x: 270, y: 200, r: 8 },
+      { x: 200, y: 270, r: 8 },
+      { x: 130, y: 200, r: 8 },
+    ],
+    bonds: [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,7],[2,8],[4,9],[6,10],[1,2],[2,3],[3,4],[4,5],[5,6],[6,1]],
   },
 ]
 
@@ -340,14 +404,14 @@ export default function MolecularDirectory() {
           color: 'rgba(255,255,255,0.32)', fontSize: '0.84rem',
           letterSpacing: '0.06em', marginBottom: '0.55rem', textAlign: 'center',
         }}>
-          Chemistry · Informatics · AI Drug Discovery · Computation
+          Chemistry · Informatics · Computation · AI Drug Discovery · ADMET
         </p>
 
         <p className="hero-meta" style={{
           color: 'rgba(255,255,255,0.14)', fontSize: '0.68rem',
           letterSpacing: '0.15em', marginBottom: '5rem',
         }}>
-          4 MODULES · 11 CHAPTERS
+          6 MODULES · 17 CHAPTERS
         </p>
 
         {/* Scroll indicator */}
@@ -532,7 +596,7 @@ export default function MolecularDirectory() {
           }}>Your Complete Journey</h2>
           <p style={{
             color: 'rgba(255,255,255,0.28)', fontSize: '0.8rem', letterSpacing: '0.04em',
-          }}>四个模块 · 系统学习 · 从化学基础到计算应用</p>
+          }}>六个模块 · 系统学习 · 从化学基础到 AI 药物发现</p>
         </div>
 
         <div style={{
