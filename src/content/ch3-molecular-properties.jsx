@@ -15,7 +15,7 @@ export function Ch3MolecularPropertiesContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>3.1.1 分子描述符 / Molecular Descriptors</h2>
+      <h2 id="s1">3.1.1 分子描述符 / Molecular Descriptors</h2>
       <p>
         在机器学习预测分子性质之前，我们需要把分子"翻译"成数字。
         <span className="term">分子描述符（Molecular Descriptor）</span>就是从分子结构计算出来的数值特征，
@@ -74,7 +74,7 @@ export function Ch3MolecularPropertiesContent() {
       </p>
 
       {/* Section 2 */}
-      <h2>3.1.2 Lipinski Ro5 与类药性 / Lipinski Ro5 & Drug-likeness</h2>
+      <h2 id="s2">3.1.2 Lipinski Ro5 与类药性 / Lipinski Ro5 & Drug-likeness</h2>
       <p>
         在 Ch2.1 中我们简介了 Lipinski 规则。现在从 ADMET 角度深入理解它的来源和意义。
       </p>
@@ -133,7 +133,7 @@ export function Ch3MolecularPropertiesContent() {
       </div>
 
       {/* Section 3 */}
-      <h2>3.1.3 ADMET 概述 / ADMET Overview</h2>
+      <h2 id="s3">3.1.3 ADMET 概述 / ADMET Overview</h2>
       <p>
         一个化合物在体外实验中活性很强，不一定能成为药物。
         <span className="term">ADMET</span> 是评估候选药物能否在体内发挥作用的核心框架：
@@ -172,7 +172,7 @@ export function Ch3MolecularPropertiesContent() {
       </div>
 
       {/* Section 4 */}
-      <h2>3.1.4 吸收与分布 / Absorption & Distribution</h2>
+      <h2 id="s4">3.1.4 吸收与分布 / Absorption & Distribution</h2>
 
       <h3>口服吸收 / Oral Absorption</h3>
       <p>
@@ -219,7 +219,7 @@ export function Ch3MolecularPropertiesContent() {
       </p>
 
       {/* Section 5 */}
-      <h2>3.1.5 代谢、排泄与毒性 / Metabolism, Excretion & Toxicity</h2>
+      <h2 id="s5">3.1.5 代谢、排泄与毒性 / Metabolism, Excretion & Toxicity</h2>
 
       <h3>CYP450 酶系 / CYP450 Enzymes</h3>
       <p>
@@ -289,7 +289,7 @@ export function Ch3MolecularPropertiesContent() {
       </div>
 
       {/* Section 6 */}
-      <h2>3.1.6 QSAR 简介 / Introduction to QSAR</h2>
+      <h2 id="s6">3.1.6 QSAR 简介 / Introduction to QSAR</h2>
       <p>
         <span className="term">QSAR（Quantitative Structure-Activity Relationship，定量构效关系）</span>
         是利用分子描述符建立数学模型，预测分子活性或性质的方法。

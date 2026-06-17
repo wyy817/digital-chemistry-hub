@@ -15,7 +15,7 @@ export function Ch2FunctionalGroupsContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>2.1.1 什么是官能团 / What Are Functional Groups?</h2>
+      <h2 id="s1">2.1.1 什么是官能团 / What Are Functional Groups?</h2>
       <p>
         有机分子可以很复杂——阿司匹林、青霉素、瑞德西韦……它们看起来各不相同，
         但它们都由少数几类"原子组合"构成，这些原子组合决定了分子的化学反应性和物理性质。
@@ -41,7 +41,7 @@ export function Ch2FunctionalGroupsContent() {
       </p>
 
       {/* Section 2 */}
-      <h2>2.1.2 含氧官能团 / Oxygen-Containing Groups</h2>
+      <h2 id="s2">2.1.2 含氧官能团 / Oxygen-Containing Groups</h2>
       <p>
         氧原子在有机分子中出现频率极高，因为它的电负性强，能形成氢键，
         对分子的亲水性（hydrophilicity）和反应性影响巨大。
@@ -116,7 +116,7 @@ export function Ch2FunctionalGroupsContent() {
       </p>
 
       {/* Section 3 */}
-      <h2>2.1.3 含氮官能团 / Nitrogen-Containing Groups</h2>
+      <h2 id="s3">2.1.3 含氮官能团 / Nitrogen-Containing Groups</h2>
       <p>
         氮是药物分子中出现频率第二高的杂原子（仅次于氧）。
         约 75% 的 FDA 批准小分子药物含有至少一个氮原子。
@@ -162,7 +162,7 @@ export function Ch2FunctionalGroupsContent() {
       </p>
 
       {/* Section 4 */}
-      <h2>2.1.4 含硫与卤素官能团 / Sulfur & Halogen Groups</h2>
+      <h2 id="s4">2.1.4 含硫与卤素官能团 / Sulfur & Halogen Groups</h2>
 
       <h3>巯基 Thiol (–SH) 与二硫键 Disulfide (–S–S–)</h3>
       <p>
@@ -222,7 +222,7 @@ export function Ch2FunctionalGroupsContent() {
       </p>
 
       {/* Section 5 */}
-      <h2>2.1.5 芳香环与杂环 / Aromatic Rings & Heterocycles</h2>
+      <h2 id="s5">2.1.5 芳香环与杂环 / Aromatic Rings & Heterocycles</h2>
       <p>
         <span className="term">芳香环（aromatic ring）</span>含有交替单双键（实为离域 π 键），
         最简单的是苯环（benzene, C₆H₆）。约 60% 的 FDA 批准药物含苯环或杂环。
@@ -294,7 +294,7 @@ export function Ch2FunctionalGroupsContent() {
       </div>
 
       {/* Section 6 */}
-      <h2>2.1.6 官能团与药物性质 / Functional Groups & Drug Properties</h2>
+      <h2 id="s6">2.1.6 官能团与药物性质 / Functional Groups & Drug Properties</h2>
       <p>
         理解官能团的最终目的是预测和设计分子性质。下面以 Lipinski 规则为框架，
         将官能团与 ADMET 性质联系起来。

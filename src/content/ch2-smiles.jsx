@@ -15,7 +15,7 @@ export function Ch2SmilesContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>2.2.1 从结构到字符串 / From Structure to String</h2>
+      <h2 id="s1">2.2.1 从结构到字符串 / From Structure to String</h2>
       <p>
         化学家画分子时用的是键线式或结构式，但计算机只认识数字和文本。
         如何把一个三维分子"压缩"成一串可以存储、传输、检索的字符？
@@ -45,7 +45,7 @@ export function Ch2SmilesContent() {
       </p>
 
       {/* Section 2 */}
-      <h2>2.2.2 SMILES 基础语法 / SMILES Basic Syntax</h2>
+      <h2 id="s2">2.2.2 SMILES 基础语法 / SMILES Basic Syntax</h2>
       <p>
         <span className="term">SMILES（Simplified Molecular Input Line Entry System）</span>
         由 David Weininger 在 1988 年设计，核心思想是用深度优先遍历（DFS）分子图，
@@ -126,7 +126,7 @@ export function Ch2SmilesContent() {
       </div>
 
       {/* Section 3 */}
-      <h2>2.2.3 立体化学与规范 SMILES / Stereochemistry & Canonical SMILES</h2>
+      <h2 id="s3">2.2.3 立体化学与规范 SMILES / Stereochemistry & Canonical SMILES</h2>
 
       <h3>双键立体化学（E/Z）</h3>
       <p>
@@ -168,7 +168,7 @@ export function Ch2SmilesContent() {
       </div>
 
       {/* Section 4 */}
-      <h2>2.2.4 SMARTS：子结构搜索 / SMARTS: Substructure Searching</h2>
+      <h2 id="s4">2.2.4 SMARTS：子结构搜索 / SMARTS: Substructure Searching</h2>
       <p>
         <span className="term">SMARTS（SMILES ARbitrary Target Specification）</span>是 SMILES 的扩展，
         专门用于定义子结构模式（pattern）——就像正则表达式之于文本，SMARTS 之于分子。
@@ -223,7 +223,7 @@ export function Ch2SmilesContent() {
       </div>
 
       {/* Section 5 */}
-      <h2>2.2.5 InChI 与 InChIKey / InChI & InChIKey</h2>
+      <h2 id="s5">2.2.5 InChI 与 InChIKey / InChI & InChIKey</h2>
       <p>
         <span className="term">InChI（IUPAC International Chemical Identifier）</span>
         是 IUPAC 官方标准化的分子标识符，结构为层级式：
@@ -262,7 +262,7 @@ export function Ch2SmilesContent() {
       </p>
 
       {/* Section 6 */}
-      <h2>2.2.6 分子指纹 / Molecular Fingerprints</h2>
+      <h2 id="s6">2.2.6 分子指纹 / Molecular Fingerprints</h2>
       <p>
         分子指纹是将分子"编码"为定长<strong>比特向量（bit vector）</strong>或整数数组的方法，
         使分子可以直接输入机器学习模型，或用于相似性计算。

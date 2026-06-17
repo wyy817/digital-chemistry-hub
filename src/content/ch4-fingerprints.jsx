@@ -15,7 +15,7 @@ export function Ch4FingerprintsContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>4.2.1 什么是分子指纹？/ What are Molecular Fingerprints?</h2>
+      <h2 id="s1">4.2.1 什么是分子指纹？/ What are Molecular Fingerprints?</h2>
       <p>
         <strong>分子指纹（Molecular Fingerprint）</strong>是将分子结构编码为固定长度<strong>二进制位向量（bit vector）</strong>
         或整数计数向量的一种表示方法。每一位（bit）代表某种结构特征是否存在——存在为 1，不存在为 0。
@@ -47,7 +47,7 @@ export function Ch4FingerprintsContent() {
       </div>
 
       {/* Section 2 */}
-      <h2>4.2.2 常见指纹类型 / Types of Molecular Fingerprints</h2>
+      <h2 id="s2">4.2.2 常见指纹类型 / Types of Molecular Fingerprints</h2>
       <p>不同指纹类型的设计思路不同，适用场景也有差异。以下是最常用的三类：</p>
 
       <h3>① MACCS Keys（结构键）</h3>
@@ -114,7 +114,7 @@ print(fp_rdk.GetNumBits())  # 2048`}</code></pre>
       </div>
 
       {/* Section 3 */}
-      <h2>4.2.3 RDKit 批量生成指纹 / Batch Fingerprint Generation</h2>
+      <h2 id="s3">4.2.3 RDKit 批量生成指纹 / Batch Fingerprint Generation</h2>
       <p>
         实际项目中需要对一个分子数据集批量生成指纹，并转换为 NumPy 数组供机器学习使用。
       </p>
@@ -150,7 +150,7 @@ print(X.shape)  # (4, 2048)  ← 每行一个分子，每列一个 bit`}</code><
       </div>
 
       {/* Section 4 */}
-      <h2>4.2.4 Tanimoto 相似性系数 / Tanimoto Similarity</h2>
+      <h2 id="s4">4.2.4 Tanimoto 相似性系数 / Tanimoto Similarity</h2>
       <p>
         衡量两个分子指纹相似程度最常用的指标是 <strong>Tanimoto 系数（也叫 Jaccard 系数）</strong>，
         定义为两个集合的交集大小除以并集大小：
@@ -210,7 +210,7 @@ sims = DataStructs.BulkTanimotoSimilarity(aspirin, fps_all)
 print(sims)  # [1.0, 0.xxx, 0.xxx]`}</code></pre>
 
       {/* Section 5 */}
-      <h2>4.2.5 虚拟筛选与相似性搜索 / Virtual Screening</h2>
+      <h2 id="s5">4.2.5 虚拟筛选与相似性搜索 / Virtual Screening</h2>
       <p>
         给定一个<strong>查询分子（query molecule）</strong>，在化合物库中找出最相似的分子，
         这个过程称为<strong>相似性搜索（similarity search）</strong>或<strong>配体相似虚拟筛选</strong>。
@@ -264,7 +264,7 @@ print(df.to_string(index=False))`}</code></pre>
       </div>
 
       {/* Section 6 */}
-      <h2>4.2.6 指纹的局限性与选择建议 / Limitations & Guidance</h2>
+      <h2 id="s6">4.2.6 指纹的局限性与选择建议 / Limitations & Guidance</h2>
 
       <h3>主要局限性</h3>
       <div className="table-wrapper">

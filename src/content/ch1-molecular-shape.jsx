@@ -15,7 +15,7 @@ export function Ch1MolecularShapeContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>1.3.1 分子为什么有形状 / Why Do Molecules Have Shape?</h2>
+      <h2 id="s1">1.3.1 分子为什么有形状 / Why Do Molecules Have Shape?</h2>
       <p>
         化学键告诉我们原子如何连接，但连接之后的三维排列是什么？
         同样由 1 个 C 和 4 个 H 组成的甲烷（CH₄），它的形状并不是"平"的，
@@ -34,7 +34,7 @@ export function Ch1MolecularShapeContent() {
       </div>
 
       {/* Section 2 */}
-      <h2>1.3.2 常见几何构型 / Common Molecular Geometries</h2>
+      <h2 id="s2">1.3.2 常见几何构型 / Common Molecular Geometries</h2>
       <p>
         以下是最常见的分子几何构型，括号中的数字代表（成键电子对数 / 孤对电子数）：
       </p>
@@ -95,7 +95,7 @@ export function Ch1MolecularShapeContent() {
       </div>
 
       {/* Section 3 */}
-      <h2>1.3.3 分子极性 / Molecular Polarity</h2>
+      <h2 id="s3">1.3.3 分子极性 / Molecular Polarity</h2>
       <p>
         极性共价键（如 C—O、O—H）会产生偶极矩，但整个分子是否极性取决于
         <strong>所有键偶极矩的向量和</strong>——形状决定了这些向量是否相消。
@@ -138,7 +138,7 @@ export function Ch1MolecularShapeContent() {
       </p>
 
       {/* Section 4 */}
-      <h2>1.3.4 手性与对映体 / Chirality & Enantiomers</h2>
+      <h2 id="s4">1.3.4 手性与对映体 / Chirality & Enantiomers</h2>
       <p>
         当一个碳原子连接着<strong>四个完全不同的基团</strong>时，这个碳就是
         <span className="term">手性中心（Chiral Center / Stereocenter）</span>，
@@ -166,7 +166,7 @@ export function Ch1MolecularShapeContent() {
       </p>
 
       {/* Section 5 */}
-      <h2>1.3.5 手性在药物发现中的重要性 / Chirality in Drug Discovery</h2>
+      <h2 id="s5">1.3.5 手性在药物发现中的重要性 / Chirality in Drug Discovery</h2>
       <p>
         手性在制药行业的重要性不亚于分子本身的结构——错误的手性可能导致从无效到危险的后果。
       </p>
@@ -209,7 +209,7 @@ export function Ch1MolecularShapeContent() {
       </div>
 
       {/* Resources */}
-      <h2>延伸资源 / Further Resources</h2>
+      <h2 id="s-resources">延伸资源 / Further Resources</h2>
       <div className="grid gap-3 mt-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
         <a
           href="https://www.khanacademy.org/science/organic-chemistry/stereochemistry-topic"

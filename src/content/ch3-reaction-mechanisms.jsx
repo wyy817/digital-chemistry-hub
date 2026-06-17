@@ -15,7 +15,7 @@ export function Ch3ReactionMechanismsContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>3.3.1 有机反应的四大类型 / Four Types of Organic Reactions</h2>
+      <h2 id="s1">3.3.1 有机反应的四大类型 / Four Types of Organic Reactions</h2>
       <p>
         有机化学中的反应看似繁杂，但核心上只有四大类型。掌握分类逻辑，是理解所有具体反应机理的前提。
       </p>
@@ -69,7 +69,7 @@ export function Ch3ReactionMechanismsContent() {
       </div>
 
       {/* Section 2 */}
-      <h2>3.3.2 箭推法：读懂反应机理的语言 / Arrow Pushing</h2>
+      <h2 id="s2">3.3.2 箭推法：读懂反应机理的语言 / Arrow Pushing</h2>
       <p>
         <strong>箭推法（Arrow Pushing / Electron Pushing）</strong>是表示电子流向的符号体系，是有机化学机理的"通用语言"。
       </p>
@@ -146,7 +146,7 @@ export function Ch3ReactionMechanismsContent() {
       </div>
 
       {/* Section 3 */}
-      <h2>3.3.3 亲核取代反应：SN1 vs SN2 / Nucleophilic Substitution</h2>
+      <h2 id="s3">3.3.3 亲核取代反应：SN1 vs SN2 / Nucleophilic Substitution</h2>
       <p>
         亲核取代是药物合成中最常见的反应类型之一，常用于构建 C–N、C–O、C–S 键——这些正是大多数药效团的核心键型。
       </p>
@@ -195,7 +195,7 @@ export function Ch3ReactionMechanismsContent() {
       </div>
 
       {/* Section 4 */}
-      <h2>3.3.4 消除反应：E1 与 E2 / Elimination Reactions</h2>
+      <h2 id="s4">3.3.4 消除反应：E1 与 E2 / Elimination Reactions</h2>
       <p>
         消除反应与亲核取代存在竞争关系。当底物是叔卤代烷，且使用强碱时，消除产物（烯烃）往往占优。
         理解这种竞争对设计高选择性反应至关重要。
@@ -237,7 +237,7 @@ export function Ch3ReactionMechanismsContent() {
       </div>
 
       {/* Section 5 */}
-      <h2>3.3.5 逆合成分析 / Retrosynthetic Analysis</h2>
+      <h2 id="s5">3.3.5 逆合成分析 / Retrosynthetic Analysis</h2>
       <p>
         <strong>逆合成分析（Retrosynthetic Analysis）</strong>由诺贝尔化学奖得主 E. J. Corey 系统化，
         是合成化学的核心思维工具：<em>从目标分子（Target Molecule, TM）出发，向后推导所需的原料和合成步骤</em>。
@@ -295,7 +295,7 @@ export function Ch3ReactionMechanismsContent() {
       </ol>
 
       {/* Section 6 */}
-      <h2>3.3.6 AI 辅助合成路线规划 / AI-Assisted Retrosynthesis</h2>
+      <h2 id="s6">3.3.6 AI 辅助合成路线规划 / AI-Assisted Retrosynthesis</h2>
       <p>
         逆合成分析曾完全依赖化学家的经验积累。现在，AI 模型已能<strong>自动生成多步合成路线</strong>，
         这正是 Data Analytics in Chemistry 和 Automation 课程的核心技术场景之一。

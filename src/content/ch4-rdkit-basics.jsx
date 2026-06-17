@@ -15,7 +15,7 @@ export function Ch4RdkitBasicsContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>4.1.1 什么是 RDKit？/ What is RDKit?</h2>
+      <h2 id="s1">4.1.1 什么是 RDKit？/ What is RDKit?</h2>
       <p>
         <strong>RDKit</strong> 是化学信息学领域最广泛使用的开源 Python 库，
         由 Greg Landrum 开发并持续维护。它提供了从分子读取、属性计算、可视化到机器学习特征提取的完整工具链，
@@ -52,7 +52,7 @@ pip install rdkit`}</code></pre>
       </div>
 
       {/* Section 2 */}
-      <h2>4.1.2 分子读取与基本操作 / Loading Molecules</h2>
+      <h2 id="s2">4.1.2 分子读取与基本操作 / Loading Molecules</h2>
       <p>
         RDKit 的核心数据结构是 <code>Mol</code> 对象，代表一个分子。
         最常见的输入方式是从 <strong>SMILES 字符串</strong>读取。
@@ -102,7 +102,7 @@ mols = [m for m in suppl if m is not None]
 print(f"读取了 {len(mols)} 个分子")`}</code></pre>
 
       {/* Section 3 */}
-      <h2>4.1.3 分子可视化 / Molecular Visualization</h2>
+      <h2 id="s3">4.1.3 分子可视化 / Molecular Visualization</h2>
       <p>
         RDKit 可以生成分子的 2D 结构图，支持 PNG/SVG 格式输出，
         在 Jupyter Notebook 中可直接内联渲染。
@@ -152,7 +152,7 @@ display(img)`}</code></pre>
       </div>
 
       {/* Section 4 */}
-      <h2>4.1.4 提取分子基本信息 / Basic Molecular Information</h2>
+      <h2 id="s4">4.1.4 提取分子基本信息 / Basic Molecular Information</h2>
       <p>
         RDKit 提供了直接访问分子中原子、键、环系统等结构信息的接口。
       </p>
@@ -199,7 +199,7 @@ print(f"各环的原子索引: {ring_info.AtomRings()}")`}</code></pre>
       </div>
 
       {/* Section 5 */}
-      <h2>4.1.5 计算分子描述符 / Calculating Molecular Descriptors</h2>
+      <h2 id="s5">4.1.5 计算分子描述符 / Calculating Molecular Descriptors</h2>
       <p>
         这是 RDKit 在药物发现中最核心的应用场景之一，直接承接 Ch3.1 的 ADMET 与 Lipinski Ro5 知识。
       </p>
@@ -277,7 +277,7 @@ df = pd.DataFrame(rows)
 print(df.to_string(index=False))`}</code></pre>
 
       {/* Section 6 */}
-      <h2>4.1.6 子结构搜索 / Substructure Search with SMARTS</h2>
+      <h2 id="s6">4.1.6 子结构搜索 / Substructure Search with SMARTS</h2>
       <p>
         子结构搜索是化学信息学数据库检索的核心操作。
         RDKit 使用 <strong>SMARTS</strong>（Ch2.2 介绍过）定义搜索模式，

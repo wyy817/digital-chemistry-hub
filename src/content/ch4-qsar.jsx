@@ -15,7 +15,7 @@ export function Ch4QsarContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>4.3.1 什么是 QSAR？/ What is QSAR?</h2>
+      <h2 id="s1">4.3.1 什么是 QSAR？/ What is QSAR?</h2>
       <p>
         <strong>QSAR（Quantitative Structure-Activity Relationship，定量构效关系）</strong>是一种
         用数学/统计模型把分子结构特征与生物活性或物理化学性质联系起来的方法。
@@ -54,7 +54,7 @@ export function Ch4QsarContent() {
       </p>
 
       {/* Section 2 */}
-      <h2>4.3.2 数据集准备：从 SMILES 到特征矩阵 / Dataset Preparation</h2>
+      <h2 id="s2">4.3.2 数据集准备：从 SMILES 到特征矩阵 / Dataset Preparation</h2>
       <p>
         QSAR 建模的第一步是把原始数据（SMILES + 活性值）转换为机器学习可以处理的特征矩阵 <code>X</code> 和标签向量 <code>y</code>。
       </p>
@@ -134,7 +134,7 @@ X_combined = np.hstack([X, X_desc])
 print(f"合并后特征维度: {X_combined.shape}")`}</code></pre>
 
       {/* Section 3 */}
-      <h2>4.3.3 构建第一个 QSAR 模型：Random Forest / Building the First Model</h2>
+      <h2 id="s3">4.3.3 构建第一个 QSAR 模型：Random Forest / Building the First Model</h2>
       <p>
         <strong>Random Forest（随机森林）</strong>是 QSAR 建模中最常用的算法之一，原因如下：
       </p>
@@ -195,7 +195,7 @@ print("预测完成！前5个预测值:", y_pred[:5])`}</code></pre>
       </div>
 
       {/* Section 4 */}
-      <h2>4.3.4 模型评估与交叉验证 / Model Evaluation & Cross-Validation</h2>
+      <h2 id="s4">4.3.4 模型评估与交叉验证 / Model Evaluation & Cross-Validation</h2>
       <p>
         单次训练集/测试集划分结果受随机种子影响较大。
         <strong>交叉验证（Cross-Validation, CV）</strong>通过多次划分取平均值，得到更可靠的性能估计。
@@ -264,7 +264,7 @@ if train_r2 - test_r2 > 0.2:
       </div>
 
       {/* Section 5 */}
-      <h2>4.3.5 模型解释性：特征重要性分析 / Feature Importance</h2>
+      <h2 id="s5">4.3.5 模型解释性：特征重要性分析 / Feature Importance</h2>
       <p>
         随机森林提供内置的<strong>特征重要性（Feature Importance）</strong>，
         可以告诉我们哪些分子结构特征对预测结果贡献最大。
@@ -341,7 +341,7 @@ shap_values = explainer.shap_values(X_test)
 shap.summary_plot(shap_values, X_test, max_display=20, plot_type='bar')`}</code></pre>
 
       {/* Section 6 */}
-      <h2>4.3.6 QSAR 的局限性与最佳实践 / Limitations & Best Practices</h2>
+      <h2 id="s6">4.3.6 QSAR 的局限性与最佳实践 / Limitations & Best Practices</h2>
 
       <h3>主要局限性</h3>
       <div className="table-wrapper">

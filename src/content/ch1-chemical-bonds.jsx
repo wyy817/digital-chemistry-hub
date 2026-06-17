@@ -14,7 +14,7 @@ export function Ch1ChemicalBondsContent() {
   return (
     <div className="content-prose">
       {/* Section 1 */}
-      <h2>1.2.1 为什么原子会键合 / Why Do Atoms Bond?</h2>
+      <h2 id="s1">1.2.1 为什么原子会键合 / Why Do Atoms Bond?</h2>
       <p>
         原子之所以会相互结合，是因为"单独存在"的状态通常不稳定。
         大多数原子的最外层电子层（价电子层）并未被填满，而自然界倾向于让系统达到能量最低、最稳定的状态。
@@ -78,7 +78,7 @@ export function Ch1ChemicalBondsContent() {
       </div>
 
       {/* Section 2 */}
-      <h2>1.2.2 共价键 / Covalent Bond</h2>
+      <h2 id="s2">1.2.2 共价键 / Covalent Bond</h2>
       <p>
         当两个原子都"需要"电子时，它们选择<strong>共享</strong>而非转让——
         这就是<span className="term">共价键（Covalent Bond）</span>。
@@ -122,7 +122,7 @@ export function Ch1ChemicalBondsContent() {
       </div>
 
       {/* Section 3 */}
-      <h2>1.2.3 离子键 / Ionic Bond</h2>
+      <h2 id="s3">1.2.3 离子键 / Ionic Bond</h2>
       <p>
         当两个原子的电负性差异非常大时（通常是金属与非金属之间），
         电子不再被"共享"，而是从电负性弱的原子直接<strong>转移</strong>到电负性强的原子。
@@ -148,7 +148,7 @@ export function Ch1ChemicalBondsContent() {
       </div>
 
       {/* Section 4 */}
-      <h2>1.2.4 氢键 / Hydrogen Bond</h2>
+      <h2 id="s4">1.2.4 氢键 / Hydrogen Bond</h2>
       <p>
         <span className="term">氢键（Hydrogen Bond）</span>严格来说不是一种"键"（不涉及共享或转移电子），
         而是一种<strong>分子间（或分子内）的静电吸引力</strong>。
@@ -178,7 +178,7 @@ export function Ch1ChemicalBondsContent() {
       </div>
 
       {/* Section 5 */}
-      <h2>1.2.5 范德华力 / Van der Waals Forces</h2>
+      <h2 id="s5">1.2.5 范德华力 / Van der Waals Forces</h2>
       <p>
         <span className="term">范德华力（Van der Waals Forces）</span>是所有分子之间都存在的最弱相互作用，
         由分子中电子云的<strong>瞬时不均匀分布</strong>产生的临时偶极引起。
@@ -200,7 +200,7 @@ export function Ch1ChemicalBondsContent() {
       </p>
 
       {/* Section 6 */}
-      <h2>1.2.6 化学键与药物发现 / Bonds in Drug Discovery</h2>
+      <h2 id="s6">1.2.6 化学键与药物发现 / Bonds in Drug Discovery</h2>
       <p>
         理解化学键对于 AI in Chemistry 的学习至关重要，因为药物与靶标蛋白之间的
         <span className="term">分子识别（Molecular Recognition）</span>本质上是各种化学键的综合作用。
@@ -222,7 +222,7 @@ export function Ch1ChemicalBondsContent() {
       </p>
 
       {/* Resources */}
-      <h2>延伸资源 / Further Resources</h2>
+      <h2 id="s-resources">延伸资源 / Further Resources</h2>
       <div className="grid gap-3 mt-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
         <a
           href="https://www.khanacademy.org/science/ap-chemistry-beta/x2eef969c74e0d802:molecular-and-ionic-compound-structure-and-properties"

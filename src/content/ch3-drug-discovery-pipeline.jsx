@@ -15,7 +15,7 @@ export function Ch3DrugDiscoveryPipelineContent() {
     <div className="content-prose">
 
       {/* Section 1 */}
-      <h2>3.2.1 药物发现总览 / Overview of Drug Discovery</h2>
+      <h2 id="s1">3.2.1 药物发现总览 / Overview of Drug Discovery</h2>
       <p>
         从一个最初的想法到一款上市药物，平均需要<strong>10–15 年</strong>时间和<strong>10–20 亿美元</strong>投入，
         且成功率极低。理解整个流程，是理解 AI 为何能在药物发现中产生价值的前提。
@@ -54,7 +54,7 @@ export function Ch3DrugDiscoveryPipelineContent() {
       </div>
 
       {/* Section 2 */}
-      <h2>3.2.2 靶点发现与验证 / Target Identification & Validation</h2>
+      <h2 id="s2">3.2.2 靶点发现与验证 / Target Identification & Validation</h2>
       <p>
         <span className="term">药物靶标（Drug Target）</span>是药物发挥作用的生物分子，
         通常是蛋白质（酶、受体、离子通道、转运蛋白）。
@@ -99,7 +99,7 @@ export function Ch3DrugDiscoveryPipelineContent() {
       </div>
 
       {/* Section 3 */}
-      <h2>3.2.3 苗头化合物发现 / Hit Discovery</h2>
+      <h2 id="s3">3.2.3 苗头化合物发现 / Hit Discovery</h2>
       <p>
         确定靶点后，需要在庞大的化学空间中找到能与靶点结合的分子——
         <span className="term">苗头化合物（Hit）</span>：在生物测定中表现出可重现活性的化合物。
@@ -156,7 +156,7 @@ export function Ch3DrugDiscoveryPipelineContent() {
       </ul>
 
       {/* Section 4 */}
-      <h2>3.2.4 先导化合物优化 / Lead Optimization</h2>
+      <h2 id="s4">3.2.4 先导化合物优化 / Lead Optimization</h2>
       <p>
         苗头化合物通常活性不够强、选择性不够好、ADMET 性质差。
         先导优化的目标是在保持活性的同时，改善所有其他性质。
@@ -213,7 +213,7 @@ export function Ch3DrugDiscoveryPipelineContent() {
       </p>
 
       {/* Section 5 */}
-      <h2>3.2.5 临床前与临床研究 / Preclinical & Clinical Studies</h2>
+      <h2 id="s5">3.2.5 临床前与临床研究 / Preclinical & Clinical Studies</h2>
 
       <h3>临床前研究 / Preclinical</h3>
       <p>
@@ -246,7 +246,7 @@ export function Ch3DrugDiscoveryPipelineContent() {
       </p>
 
       {/* Section 6 */}
-      <h2>3.2.6 AI 在药物发现中的应用 / AI in Drug Discovery</h2>
+      <h2 id="s6">3.2.6 AI 在药物发现中的应用 / AI in Drug Discovery</h2>
       <p>
         AI 正在改变药物发现的每一个阶段。以下是当前最成熟的 AI 应用，也是 IC 课程的核心内容：
       </p>
