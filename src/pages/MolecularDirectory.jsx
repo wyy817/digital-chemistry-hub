@@ -3,165 +3,84 @@ import { useNavigate } from 'react-router-dom'
 
 const MODULES = [
   {
-    icon: '⚗️',
+    num: '01',
     title: 'Chemistry Fundamentals',
     subtitle: '化学基础',
-    desc: '原子结构 · 化学键 · 分子形状',
-    color: '#60a5fa',
-    glow: 'rgba(96,165,250,0.4)',
-    gradient: 'linear-gradient(145deg,#080f22 0%,#0d1f44 55%,#1e3a8a 100%)',
+    tag: 'FUNDAMENTALS',
+    desc: 'Atomic Structure · Chemical Bonds · Molecular Shape',
+    accent: '#60a5fa',
+    glow: '96,165,250',
+    bg: 'linear-gradient(145deg,#020818 0%,#0a1628 45%,#1e3a8a 100%)',
     to: '/learn/ch1-atomic-structure',
     chapters: 3,
-    formula: 'H₂O',
   },
   {
-    icon: '🔬',
+    num: '02',
     title: 'Cheminformatics',
     subtitle: '化学信息学',
-    desc: '功能基团 · SMILES · 分子表示',
-    color: '#a78bfa',
-    glow: 'rgba(167,139,250,0.4)',
-    gradient: 'linear-gradient(145deg,#100520 0%,#1a0838 55%,#4c1d95 100%)',
+    tag: 'INFORMATICS',
+    desc: 'Functional Groups · SMILES · Molecular Representation',
+    accent: '#c084fc',
+    glow: '192,132,252',
+    bg: 'linear-gradient(145deg,#080315 0%,#1a0838 45%,#4c1d95 100%)',
     to: '/learn/ch2-functional-groups',
     chapters: 2,
-    formula: 'CH₄',
   },
   {
-    icon: '💊',
+    num: '03',
     title: 'AI Drug Discovery',
     subtitle: 'AI 药物发现',
-    desc: '分子性质 · 药物管线 · 反应机制',
-    color: '#34d399',
-    glow: 'rgba(52,211,153,0.4)',
-    gradient: 'linear-gradient(145deg,#011410 0%,#022820 55%,#065f46 100%)',
+    tag: 'AI · PHARMA',
+    desc: 'Molecular Properties · Drug Pipeline · Reaction Mechanisms',
+    accent: '#34d399',
+    glow: '52,211,153',
+    bg: 'linear-gradient(145deg,#010f09 0%,#043321 45%,#065f46 100%)',
     to: '/learn/ch3-molecular-properties',
     chapters: 3,
-    formula: 'C₆H₆',
   },
   {
-    icon: '🧪',
+    num: '04',
     title: 'Computational Chemistry',
     subtitle: '计算化学',
-    desc: 'RDKit · 分子指纹 · QSAR建模',
-    color: '#fbbf24',
-    glow: 'rgba(251,191,36,0.4)',
-    gradient: 'linear-gradient(145deg,#120600 0%,#1c0a00 55%,#78350f 100%)',
+    tag: 'COMP · CHEM',
+    desc: 'RDKit · Molecular Fingerprints · QSAR Modeling',
+    accent: '#fbbf24',
+    glow: '251,191,36',
+    bg: 'linear-gradient(145deg,#0f0800 0%,#2d1500 45%,#78350f 100%)',
     to: '/learn/ch4-rdkit-basics',
     chapters: 3,
-    formula: 'C₂H₅OH',
   },
 ]
 
-const N = MODULES.length
-const STEP = 360 / N   // 90 degrees per card
-const RADIUS = 260     // px from center to card
+const N = 4
+const STEP = 90
+const RADIUS = 290
 
-// Animated molecular network background canvas
-function MolBg() {
-  const cvs = useRef(null)
-  useEffect(() => {
-    const c = cvs.current
-    const ctx = c.getContext('2d')
-    let raf
-    const fit = () => { c.width = window.innerWidth; c.height = window.innerHeight }
-    fit()
-    window.addEventListener('resize', fit)
+// Per-card tilt + vertical stagger for the scattered spiral feel
+const TILTS = [
+  { rz: -5, dy: -28 },
+  { rz:  7, dy:  30 },
+  { rz: -3, dy: -18 },
+  { rz:  6, dy:  24 },
+]
 
-    const pts = Array.from({ length: 65 }, () => ({
-      x: Math.random() * c.width,
-      y: Math.random() * c.height,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      r: Math.random() * 1.8 + 0.4,
-    }))
-
-    const frame = () => {
-      ctx.clearRect(0, 0, c.width, c.height)
-      pts.forEach(p => {
-        p.x += p.vx; p.y += p.vy
-        if (p.x < 0 || p.x > c.width) p.vx *= -1
-        if (p.y < 0 || p.y > c.height) p.vy *= -1
-      })
-      pts.forEach((a, i) => {
-        pts.slice(i + 1).forEach(b => {
-          const d = Math.hypot(a.x - b.x, a.y - b.y)
-          if (d < 140) {
-            ctx.strokeStyle = `rgba(70,155,235,${(1 - d / 140) * 0.22})`
-            ctx.lineWidth = 0.6
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke()
-          }
-        })
-        ctx.fillStyle = 'rgba(100,185,255,0.55)'
-        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill()
-      })
-      raf = requestAnimationFrame(frame)
-    }
-    frame()
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', fit) }
-  }, [])
-  return <canvas ref={cvs} style={{ position: 'fixed', inset: 0, zIndex: 0, background: '#04091a' }} />
-}
-
-// Benzene-ring (double hexagon + bonds) card decoration
-function Hex({ color }) {
-  return (
-    <svg
-      style={{ position: 'absolute', top: -28, left: -28, width: 195, height: 195, opacity: 0.11, pointerEvents: 'none' }}
-      viewBox="0 0 195 195"
-    >
-      <polygon points="97,12 168,52 168,135 97,175 26,135 26,52" stroke={color} strokeWidth="2" fill="none" />
-      <polygon points="97,43 132,63 132,103 97,123 62,103 62,63" stroke={color} strokeWidth="2" fill="none" />
-      <line x1="97" y1="12" x2="97" y2="43" stroke={color} strokeWidth="1.5" />
-      <line x1="168" y1="52" x2="132" y2="63" stroke={color} strokeWidth="1.5" />
-      <line x1="168" y1="135" x2="132" y2="103" stroke={color} strokeWidth="1.5" />
-      <line x1="97" y1="175" x2="97" y2="123" stroke={color} strokeWidth="1.5" />
-      <line x1="26" y1="135" x2="62" y2="103" stroke={color} strokeWidth="1.5" />
-      <line x1="26" y1="52" x2="62" y2="63" stroke={color} strokeWidth="1.5" />
-    </svg>
-  )
-}
-
-// Atom with three electron orbit ellipses
-function Orbit({ color }) {
-  return (
-    <svg
-      style={{ position: 'absolute', bottom: -20, right: -20, width: 165, height: 165, opacity: 0.11, pointerEvents: 'none' }}
-      viewBox="0 0 165 165"
-    >
-      <circle cx="82" cy="82" r="9" fill={color} />
-      <ellipse cx="82" cy="82" rx="66" ry="20" stroke={color} strokeWidth="1.5" fill="none" />
-      <ellipse cx="82" cy="82" rx="66" ry="20" stroke={color} strokeWidth="1.5" fill="none" transform="rotate(60 82 82)" />
-      <ellipse cx="82" cy="82" rx="66" ry="20" stroke={color} strokeWidth="1.5" fill="none" transform="rotate(120 82 82)" />
-    </svg>
-  )
-}
-
-function ArrowBtn({ dir, onClick }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        width: 46, height: 46, borderRadius: '50%', cursor: 'pointer', flexShrink: 0,
-        background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)',
-        color: 'rgba(255,255,255,0.8)', fontSize: '1.9rem', lineHeight: 1,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        transition: 'background 0.2s',
-      }}
-      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.14)' }}
-      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)' }}
-    >
-      {dir === 'prev' ? '‹' : '›'}
-    </button>
-  )
+const arrowStyle = {
+  width: 42, height: 42, borderRadius: '50%',
+  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+  color: 'rgba(255,255,255,0.65)', fontSize: '1.55rem', lineHeight: 1,
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  cursor: 'pointer', flexShrink: 0,
+  transition: 'background 0.2s',
 }
 
 export default function MolecularDirectory() {
-  const [rot, setRot] = useState(0)
-  const autoRef = useRef(null)
-  const drag = useRef(null)
+  const [rot, setRot]     = useState(0)
+  const [mouse, setMouse] = useState({ x: 0, y: 0 })
+  const autoRef  = useRef(null)
+  const drag     = useRef(null)
+  const rootRef  = useRef(null)
   const navigate = useNavigate()
 
-  // Current front-facing card index derived from accumulated rotation
   const cur = ((-Math.round(rot / STEP)) % N + N) % N
 
   const next = useCallback(() => setRot(r => r - STEP), [])
@@ -169,9 +88,9 @@ export default function MolecularDirectory() {
 
   const goTo = useCallback((idx) => {
     setRot(r => {
-      const c = ((-Math.round(r / STEP)) % N + N) % N
+      const c    = ((-Math.round(r / STEP)) % N + N) % N
       const diff = ((idx - c) % N + N) % N
-      const step = diff > N / 2 ? diff - N : diff  // shortest-path rotation
+      const step = diff > N / 2 ? diff - N : diff
       return r - step * STEP
     })
   }, [])
@@ -186,18 +105,35 @@ export default function MolecularDirectory() {
     return () => clearInterval(autoRef.current)
   }, [next])
 
+  // Non-passive wheel listener so we can preventDefault
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el) return
+    const handler = (e) => {
+      e.preventDefault()
+      if (e.deltaY > 0) { next(); resetAuto() }
+      else              { prev(); resetAuto() }
+    }
+    el.addEventListener('wheel', handler, { passive: false })
+    return () => el.removeEventListener('wheel', handler)
+  }, [next, prev, resetAuto])
+
+  const handleMouseMove = useCallback((e) => {
+    setMouse({
+      x: (e.clientX / window.innerWidth  - 0.5) * 18,
+      y: (e.clientY / window.innerHeight - 0.5) * 11,
+    })
+    if (drag.current && Math.abs(e.clientX - drag.current.x) > 8) {
+      drag.current.moved = true
+    }
+  }, [])
+
   const onDown = (e) => {
-    const x = e.clientX ?? e.touches?.[0]?.clientX
-    drag.current = { x, moved: false }
-  }
-  const onMove = (e) => {
-    if (!drag.current) return
-    const x = e.clientX ?? e.touches?.[0]?.clientX
-    if (Math.abs(x - drag.current.x) > 8) drag.current.moved = true
+    drag.current = { x: e.clientX ?? e.touches?.[0]?.clientX, moved: false }
   }
   const onUp = (e) => {
     if (!drag.current) return
-    const x = e.clientX ?? e.changedTouches?.[0]?.clientX
+    const x  = e.clientX ?? e.changedTouches?.[0]?.clientX
     const dx = x - drag.current.x
     if (drag.current.moved && Math.abs(dx) > 50) {
       dx < 0 ? next() : prev()
@@ -212,141 +148,245 @@ export default function MolecularDirectory() {
     else navigate(mod.to)
   }
 
+  const cm = MODULES[cur]
+
   return (
     <div
-      onMouseDown={onDown} onMouseMove={onMove} onMouseUp={onUp}
+      ref={rootRef}
+      onMouseMove={handleMouseMove}
+      onMouseDown={onDown} onMouseUp={onUp}
       onMouseLeave={() => { drag.current = null }}
-      onTouchStart={onDown} onTouchMove={onMove} onTouchEnd={onUp}
+      onTouchStart={onDown}
+      onTouchMove={(e) => {
+        if (drag.current && Math.abs(e.touches[0].clientX - drag.current.x) > 8)
+          drag.current.moved = true
+      }}
+      onTouchEnd={onUp}
       style={{
         position: 'relative', width: '100vw', height: '100vh',
-        overflow: 'hidden', userSelect: 'none',
-        display: 'flex', flexDirection: 'column',
+        background: '#000', overflow: 'hidden', userSelect: 'none',
+        fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
       }}
     >
-      <MolBg />
-
-      {/* Header */}
-      <header style={{ position: 'relative', zIndex: 10, flexShrink: 0, textAlign: 'center', paddingTop: '4vh', paddingBottom: '1.5vh' }}>
-        <h1 style={{
-          margin: 0, fontWeight: 800, letterSpacing: '0.05em',
-          fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
-          background: 'linear-gradient(90deg, #93c5fd 0%, #a5f3fc 45%, #818cf8 100%)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-          filter: 'drop-shadow(0 0 25px rgba(96,165,250,0.35))',
-        }}>
-          Digital Chemistry Hub
-        </h1>
-        <p style={{ color: 'rgba(148,195,255,0.55)', fontSize: '0.88rem', marginTop: '0.45rem', letterSpacing: '0.03em' }}>
-          点击卡片开始学习 · Click a card to begin
-        </p>
-      </header>
-
-      {/* 3D Carousel Stage — flex:1 fills remaining height, overflow:hidden clips 3D */}
+      {/* Subtle grid texture */}
       <div style={{
-        position: 'relative', zIndex: 5,
-        flex: 1,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        perspective: '1000px',
-        overflow: 'hidden',
+        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
+        backgroundImage: [
+          'linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px)',
+          'linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)',
+        ].join(','),
+        backgroundSize: '80px 80px',
+      }} />
+
+      {/* Top nav */}
+      <nav style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '1.4rem 2.5rem',
+        borderBottom: '1px solid rgba(255,255,255,0.045)',
+        backdropFilter: 'blur(12px)',
+        background: 'rgba(0,0,0,0.55)',
       }}>
-        {/* width:0 height:0 so flex centers the (0,0) origin — cards positioned symmetrically around it */}
+        {/* Brand */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <polygon points="14,2 25,8 25,20 14,26 3,20 3,8"
+              stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" fill="none" />
+            <polygon points="14,8 19,11 19,17 14,20 9,17 9,11"
+              stroke="rgba(255,255,255,0.18)" strokeWidth="1" fill="none" />
+          </svg>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.73rem', letterSpacing: '0.12em', fontWeight: 500 }}>
+            DIGITAL CHEMISTRY
+          </span>
+        </div>
+
+        {/* Center label */}
+        <div style={{ color: 'rgba(255,255,255,0.18)', fontSize: '0.7rem', letterSpacing: '0.14em' }}>
+          spiral · {String(cur + 1).padStart(2, '0')}
+        </div>
+
+        {/* Right hint */}
+        <div style={{ color: 'rgba(255,255,255,0.18)', fontSize: '0.68rem', letterSpacing: '0.08em' }}>
+          scroll / drag to explore
+        </div>
+      </nav>
+
+      {/* 3D Stage */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 5,
+        perspective: '1100px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        {/* Mouse parallax wrapper — instant, no transition */}
         <div style={{
           width: 0, height: 0,
           transformStyle: 'preserve-3d',
-          transform: `rotateY(${rot}deg)`,
-          transition: 'transform 0.75s cubic-bezier(0.4,0,0.2,1)',
+          transform: `rotateX(${-mouse.y}deg) rotateY(${mouse.x}deg)`,
         }}>
-          {MODULES.map((m, i) => {
-            const active = i === cur
-            return (
-              <div
-                key={i}
-                onClick={() => handleCardClick(m, i)}
-                style={{
-                  position: 'absolute',
-                  width: 300, height: 380,
-                  left: -150, top: -190,
-                  transform: `rotateY(${i * STEP}deg) translateZ(${RADIUS}px)`,
-                  background: m.gradient,
-                  borderRadius: 22,
-                  border: `1.5px solid ${active ? m.color : 'rgba(255,255,255,0.07)'}`,
-                  boxShadow: active
-                    ? `0 0 60px ${m.glow}, 0 30px 80px rgba(0,0,0,0.75)`
-                    : '0 8px 30px rgba(0,0,0,0.55)',
-                  cursor: active ? 'pointer' : 'default',
-                  overflow: 'hidden',
-                  display: 'flex', flexDirection: 'column',
-                  padding: '1.75rem',
-                  backfaceVisibility: 'hidden',
-                  transition: 'box-shadow 0.4s, border-color 0.4s',
-                }}
-              >
-                <Hex color={m.color} />
-                <Orbit color={m.color} />
+          {/* Rotation wrapper — animated */}
+          <div style={{
+            width: 0, height: 0,
+            transformStyle: 'preserve-3d',
+            transform: `rotateY(${rot}deg)`,
+            transition: 'transform 0.85s cubic-bezier(0.4,0,0.2,1)',
+          }}>
+            {MODULES.map((m, i) => {
+              const active = i === cur
+              const t = TILTS[i]
+              return (
+                <div
+                  key={i}
+                  onClick={() => handleCardClick(m, i)}
+                  style={{
+                    position: 'absolute',
+                    width: 310, height: 410,
+                    left: -155, top: -205,
+                    transform: `rotateY(${i * STEP}deg) translateZ(${RADIUS}px) translateY(${t.dy}px) rotateZ(${t.rz}deg)`,
+                    backfaceVisibility: 'hidden',
+                    background: m.bg,
+                    borderRadius: 16,
+                    border: active
+                      ? `1px solid rgba(${m.glow},0.55)`
+                      : '1px solid rgba(255,255,255,0.05)',
+                    boxShadow: active
+                      ? `0 0 70px rgba(${m.glow},0.22), 0 0 140px rgba(${m.glow},0.08), 0 40px 80px rgba(0,0,0,0.95)`
+                      : '0 20px 55px rgba(0,0,0,0.88)',
+                    cursor: 'pointer',
+                    overflow: 'hidden',
+                    padding: '1.75rem',
+                    display: 'flex', flexDirection: 'column',
+                    transition: 'box-shadow 0.5s, border-color 0.5s',
+                  }}
+                >
+                  {/* Large number watermark */}
+                  <div style={{
+                    position: 'absolute', bottom: '-1.5rem', right: '-0.5rem',
+                    fontSize: '10rem', fontWeight: 900, lineHeight: 1,
+                    color: `rgba(${m.glow},0.055)`,
+                    letterSpacing: '-0.06em', userSelect: 'none', pointerEvents: 'none',
+                  }}>
+                    {m.num}
+                  </div>
 
-                {/* Chemical formula badge */}
-                <span style={{
-                  position: 'absolute', top: '1.2rem', right: '1.25rem',
-                  color: m.color, fontSize: '0.95rem', fontWeight: 700, opacity: 0.6,
-                  letterSpacing: '0.03em',
-                }}>
-                  {m.formula}
-                </span>
+                  {/* Thin accent line at top */}
+                  <div style={{
+                    position: 'absolute', top: 0, left: '1.75rem', right: '1.75rem', height: 2,
+                    background: active
+                      ? `linear-gradient(90deg, transparent, rgba(${m.glow},0.7), transparent)`
+                      : 'transparent',
+                    transition: 'background 0.5s',
+                    borderRadius: 1,
+                  }} />
 
-                <span style={{ color: m.color, fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 600 }}>
-                  {m.subtitle}
-                </span>
-                <div style={{ fontSize: '3.2rem', margin: '0.55rem 0 0.8rem' }}>{m.icon}</div>
-                <div style={{ color: 'white', fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.3, marginBottom: '0.6rem' }}>
-                  {m.title}
-                </div>
-                <div style={{ color: 'rgba(190,215,255,0.55)', fontSize: '0.82rem', lineHeight: 1.8, flex: 1 }}>
-                  {m.desc}
-                </div>
+                  {/* Tag chip */}
+                  <div style={{
+                    alignSelf: 'flex-start',
+                    fontSize: '0.57rem', letterSpacing: '0.18em', fontWeight: 600,
+                    color: `rgba(${m.glow},0.8)`,
+                    border: `1px solid rgba(${m.glow},0.25)`,
+                    borderRadius: 20, padding: '0.2rem 0.65rem',
+                  }}>
+                    {m.tag}
+                  </div>
 
-                <div style={{ marginTop: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.75rem' }}>{m.chapters} 章节</span>
-                  {active && (
-                    <span style={{
-                      color: m.color, border: `1px solid ${m.color}`, borderRadius: 20,
-                      padding: '0.28rem 0.9rem', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.02em',
+                  {/* Main content */}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '0.4rem' }}>
+                    <div style={{
+                      fontSize: '0.65rem', letterSpacing: '0.09em',
+                      color: `rgba(${m.glow},0.45)`, marginBottom: '0.55rem',
                     }}>
-                      开始学习 →
-                    </span>
-                  )}
+                      {m.subtitle}
+                    </div>
+                    <div style={{
+                      fontSize: '1.65rem', fontWeight: 800, color: '#fff',
+                      lineHeight: 1.22, letterSpacing: '-0.02em',
+                    }}>
+                      {m.title}
+                    </div>
+                  </div>
+
+                  {/* Bottom section */}
+                  <div>
+                    <div style={{
+                      fontSize: '0.7rem', color: 'rgba(255,255,255,0.27)',
+                      lineHeight: 1.8, marginBottom: '1rem',
+                    }}>
+                      {m.desc}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ color: 'rgba(255,255,255,0.18)', fontSize: '0.66rem', letterSpacing: '0.04em' }}>
+                        {m.chapters} chapters
+                      </span>
+                      {active && (
+                        <span style={{
+                          color: m.accent, fontSize: '0.77rem', fontWeight: 600,
+                          letterSpacing: '0.02em',
+                        }}>
+                          Begin →
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      <div style={{ position: 'relative', zIndex: 10, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', paddingBottom: '4vh' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
-          <ArrowBtn dir="prev" onClick={() => { prev(); resetAuto() }} />
-
-          {/* Dot indicators */}
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            {MODULES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { goTo(i); resetAuto() }}
-                style={{
-                  width: i === cur ? 26 : 8, height: 8, borderRadius: 4, border: 'none', padding: 0, cursor: 'pointer',
-                  background: i === cur ? MODULES[cur].color : 'rgba(255,255,255,0.22)',
-                  transition: 'all 0.35s', flexShrink: 0,
-                }}
-              />
-            ))}
+      {/* Bottom bar */}
+      <div style={{
+        position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100,
+        display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+        padding: '1.25rem 2.5rem 2rem',
+        borderTop: '1px solid rgba(255,255,255,0.045)',
+        backdropFilter: 'blur(12px)',
+        background: 'rgba(0,0,0,0.55)',
+      }}>
+        {/* Current module info */}
+        <div style={{ minWidth: 0 }}>
+          <div style={{ color: 'rgba(255,255,255,0.18)', fontSize: '0.6rem', letterSpacing: '0.12em', marginBottom: '0.3rem' }}>
+            {String(cur + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}
           </div>
-
-          <ArrowBtn dir="next" onClick={() => { next(); resetAuto() }} />
+          <div style={{
+            color: 'rgba(255,255,255,0.85)', fontSize: '0.95rem', fontWeight: 700,
+            letterSpacing: '-0.01em', lineHeight: 1.3,
+          }}>
+            {cm.title}
+          </div>
+          <div style={{ color: 'rgba(255,255,255,0.28)', fontSize: '0.7rem', marginTop: '0.15rem' }}>
+            {cm.subtitle}
+          </div>
         </div>
 
-        <p style={{ margin: 0, color: 'rgba(185,210,255,0.5)', fontSize: '0.83rem', letterSpacing: '0.04em' }}>
-          {MODULES[cur].subtitle} — {MODULES[cur].title}
-        </p>
+        {/* Controls: dots + arrows */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexShrink: 0 }}>
+          {MODULES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { goTo(i); resetAuto() }}
+              style={{
+                width: i === cur ? 22 : 6, height: 6, borderRadius: 3,
+                border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0,
+                background: i === cur ? cm.accent : 'rgba(255,255,255,0.18)',
+                transition: 'all 0.35s',
+              }}
+            />
+          ))}
+          <div style={{ width: 1, height: 18, background: 'rgba(255,255,255,0.1)', margin: '0 0.25rem' }} />
+          <button
+            style={arrowStyle}
+            onClick={() => { prev(); resetAuto() }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
+          >‹</button>
+          <button
+            style={arrowStyle}
+            onClick={() => { next(); resetAuto() }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
+          >›</button>
+        </div>
       </div>
     </div>
   )
