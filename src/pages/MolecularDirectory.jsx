@@ -446,7 +446,7 @@ export default function MolecularDirectory() {
               {/* Subtitle */}
               <div className="sec-sub" style={{
                 fontSize: '0.76rem', letterSpacing: '0.08em',
-                color: `rgba(${m.glow},0.52)`, marginBottom: '2rem',
+                color: `rgba(${m.glow},0.82)`, marginBottom: '2rem',
               }}>{m.subtitle}</div>
 
               {/* Accent rule */}
@@ -461,7 +461,7 @@ export default function MolecularDirectory() {
                 {m.lines.map((line, li) => (
                   <div key={li} className="sec-line" style={{
                     display: 'flex', alignItems: 'center', gap: '0.85rem',
-                    color: 'rgba(255,255,255,0.48)', fontSize: '0.8rem', lineHeight: 1.5,
+                    color: 'rgba(255,255,255,0.75)', fontSize: '0.8rem', lineHeight: 1.5,
                   }}>
                     <div style={{
                       width: 4, height: 4, borderRadius: '50%',
@@ -581,12 +581,12 @@ export default function MolecularDirectory() {
                 letterSpacing: '-0.01em', marginBottom: '0.25rem',
               }}>{m.title}</div>
               <div style={{
-                fontSize: '0.7rem', color: 'rgba(255,255,255,0.27)',
+                fontSize: '0.7rem', color: 'rgba(255,255,255,0.52)',
                 marginBottom: '1.3rem',
               }}>{m.subtitle}</div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{
-                  color: 'rgba(255,255,255,0.16)', fontSize: '0.63rem', letterSpacing: '0.06em',
+                  color: 'rgba(255,255,255,0.42)', fontSize: '0.63rem', letterSpacing: '0.06em',
                 }}>{m.chapters} chapters</span>
                 <span style={{ color: m.accent, fontSize: '0.72rem', fontWeight: 600 }}>Enter →</span>
               </div>
