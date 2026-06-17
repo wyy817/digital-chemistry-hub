@@ -2,9 +2,9 @@ import { useState } from 'react'
 import Sidebar from './Sidebar'
 import AnnotationPanel from './AnnotationPanel'
 
-export default function Layout({ children, progress, annotations, onDeleteAnnotation, onUpdateAnnotation, showAnnotations }) {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-  const [annotationCollapsed, setAnnotationCollapsed] = useState(!showAnnotations)
+export default function Layout({ children, progress, annotations, onDeleteAnnotation, onUpdateAnnotation, showAnnotations, wide, initialSidebarCollapsed }) {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(initialSidebarCollapsed ?? false)
+  const [annotationCollapsed, setAnnotationCollapsed] = useState(true)
 
   return (
     <div className="app-layout">
@@ -15,8 +15,8 @@ export default function Layout({ children, progress, annotations, onDeleteAnnota
       />
       <div className="main-area">
         <div className="content-area">
-          <div className="content-scroll">
-            <div className="content-inner">
+          <div className={`content-scroll${wide ? ' smooth' : ''}`}>
+            <div className={`content-inner${wide ? ' wide' : ''}`}>
               {children}
             </div>
           </div>

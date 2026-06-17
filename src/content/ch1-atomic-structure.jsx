@@ -14,7 +14,7 @@ export function Ch1AtomicStructureContent() {
   return (
     <div className="content-prose">
       {/* Section 1 */}
-      <h2>1.1.1 什么是原子 / What is an Atom?</h2>
+      <h2 id="s1">1.1.1 什么是原子 / What is an Atom?</h2>
       <p>
         <span className="term">原子（Atom）</span>是构成普通物质的最小单位，是化学变化中不可再分的基本微粒。
         你可以把原子想象成乐高积木——所有的物质，从水分子到 DNA，都是由不同种类的原子"拼"出来的。
@@ -30,7 +30,7 @@ export function Ch1AtomicStructureContent() {
       </div>
 
       {/* Section 2 */}
-      <h2>1.1.2 亚原子粒子 / Subatomic Particles</h2>
+      <h2 id="s2">1.1.2 亚原子粒子 / Subatomic Particles</h2>
       <p>
         原子虽小，但它内部还有更小的结构。原子由三种
         <span className="term">亚原子粒子（Subatomic Particles）</span>组成：
@@ -82,7 +82,7 @@ export function Ch1AtomicStructureContent() {
       </p>
 
       {/* Section 3 */}
-      <h2>1.1.3 原子序数与质量数 / Atomic Number & Mass Number</h2>
+      <h2 id="s3">1.1.3 原子序数与质量数 / Atomic Number & Mass Number</h2>
       <p>
         这两个数字是识别原子的关键指标：
       </p>
@@ -112,7 +112,7 @@ export function Ch1AtomicStructureContent() {
       </div>
 
       {/* Section 4 */}
-      <h2>1.1.4 电子层与轨道 / Electron Shells & Orbitals</h2>
+      <h2 id="s4">1.1.4 电子层与轨道 / Electron Shells & Orbitals</h2>
       <p>
         电子不是随机分布在原子核外的——它们按照特定规律排列在
         <span className="term">电子层（Electron Shells）</span>中，
@@ -142,7 +142,7 @@ export function Ch1AtomicStructureContent() {
       </p>
 
       {/* Section 5 */}
-      <h2>1.1.5 元素周期表入门 / Introduction to the Periodic Table</h2>
+      <h2 id="s5">1.1.5 元素周期表入门 / Introduction to the Periodic Table</h2>
       <p>
         <span className="term">元素周期表（Periodic Table）</span>按原子序数从小到大排列所有元素，
         并将化学性质相似的元素排在同一列（族）。
@@ -160,7 +160,7 @@ export function Ch1AtomicStructureContent() {
       </div>
 
       {/* Resources */}
-      <h2>延伸资源 / Further Resources</h2>
+      <h2 id="s-resources">延伸资源 / Further Resources</h2>
       <div className="grid gap-3 mt-4" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
         <a
           href="https://www.khanacademy.org/science/ap-chemistry-beta/x2eef969c74e0d802:atomic-structure-and-properties"

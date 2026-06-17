@@ -9,7 +9,15 @@ import { ch1QuickCheck } from '../../content/ch1-atomic-structure-quiz'
 
 const PAGE_ID = 'ch1-1-atomic-structure'
 
-// Find text in a container DOM node and wrap it with a highlight span
+const TOC = [
+  { id: 's1', label: '1.1.1 什么是原子' },
+  { id: 's2', label: '1.1.2 亚原子粒子' },
+  { id: 's3', label: '1.1.3 原子序数与质量数' },
+  { id: 's4', label: '1.1.4 电子层与轨道' },
+  { id: 's5', label: '1.1.5 元素周期表入门' },
+  { id: 's-resources', label: '延伸资源' },
+]
+
 function applyHighlight(container, searchText, annotationId) {
   const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null)
   let node
@@ -40,13 +48,12 @@ export default function AtomicStructure() {
   const [progress, setProgress] = useState({})
   const [isCompleted, setIsCompleted] = useState(false)
   const [showQuiz, setShowQuiz] = useState(false)
+  const [activeSection, setActiveSection] = useState('s1')
 
-  // Floating toolbar state
-  const [toolbar, setToolbar] = useState(null) // { x, y, text, range }
-  const [inputBox, setInputBox] = useState(null) // { x, y, text, range }
+  const [toolbar, setToolbar] = useState(null)
+  const [inputBox, setInputBox] = useState(null)
   const [inputNote, setInputNote] = useState('')
 
-  // Load annotations + progress on mount
   useEffect(() => {
     if (!user) return
     Promise.all([
@@ -63,17 +70,14 @@ export default function AtomicStructure() {
     })
   }, [user])
 
-  // Re-apply highlights after annotations load or content renders
   useEffect(() => {
     if (!contentRef.current || annotations.length === 0) return
     const timer = setTimeout(() => {
-      // Clear existing spans first
       contentRef.current.querySelectorAll('.annotation-highlight').forEach(el => {
         const parent = el.parentNode
         while (el.firstChild) parent.insertBefore(el.firstChild, el)
         parent.removeChild(el)
       })
-      // Re-apply
       annotations.forEach(ann => {
         applyHighlight(contentRef.current, ann.selected_text, ann.id)
       })
@@ -81,7 +85,6 @@ export default function AtomicStructure() {
     return () => clearTimeout(timer)
   }, [annotations])
 
-  // Click on highlight → scroll annotation panel item into view
   useEffect(() => {
     const container = contentRef.current
     if (!container) return
@@ -97,17 +100,29 @@ export default function AtomicStructure() {
     return () => container.removeEventListener('click', handler)
   }, [])
 
-  // Show toolbar on text selection
+  // IntersectionObserver for active TOC section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-10% 0px -70% 0px', threshold: 0 }
+    )
+    TOC.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
   const handleMouseUp = useCallback(() => {
     const selection = window.getSelection()
     if (!selection || selection.isCollapsed) return
-
     const text = selection.toString().trim()
     if (!text || text.length < 3) return
-
-    // Ensure selection is inside content area
     if (!contentRef.current?.contains(selection.anchorNode)) return
-
     const range = selection.getRangeAt(0)
     const rect = range.getBoundingClientRect()
     setInputBox(null)
@@ -119,7 +134,6 @@ export default function AtomicStructure() {
     })
   }, [])
 
-  // Dismiss toolbar when clicking elsewhere
   useEffect(() => {
     const handler = (e) => {
       if (!e.target.closest('.annotation-toolbar') && !e.target.closest('.annotation-input-box')) {
@@ -149,18 +163,14 @@ export default function AtomicStructure() {
       color: 'yellow',
       container_id: 'content-main',
     }).select().single()
-
     if (!error && data) {
       setAnnotations(prev => [...prev, data])
-      // Immediately apply highlight via the saved range
       try {
         const span = document.createElement('span')
         span.className = 'annotation-highlight'
         span.dataset.annotationId = data.id
         inputBox.range.surroundContents(span)
-      } catch {
-        // Range invalid (e.g. spans multiple elements); will re-apply via effect
-      }
+      } catch { }
       window.getSelection()?.removeAllRanges()
     }
     setInputBox(null)
@@ -170,7 +180,6 @@ export default function AtomicStructure() {
   async function deleteAnnotation(id) {
     await supabase.from('annotations').delete().eq('id', id)
     setAnnotations(prev => prev.filter(a => a.id !== id))
-    // Remove highlight span
     contentRef.current?.querySelectorAll(`[data-annotation-id="${id}"]`).forEach(el => {
       const parent = el.parentNode
       while (el.firstChild) parent.insertBefore(el.firstChild, el)
@@ -195,6 +204,10 @@ export default function AtomicStructure() {
     setProgress(p => ({ ...p, [PAGE_ID]: { status: 'completed' } }))
   }
 
+  function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   const meta = ch1AtomicStructureMeta
 
   return (
@@ -204,92 +217,125 @@ export default function AtomicStructure() {
       onDeleteAnnotation={deleteAnnotation}
       onUpdateAnnotation={updateAnnotation}
       showAnnotations
+      wide
+      initialSidebarCollapsed
     >
-      {/* Breadcrumb */}
-      <nav className="breadcrumb">
-        <Link to="/">Dashboard</Link>
-        <span className="breadcrumb-sep">›</span>
-        <span>Chemistry Fundamentals</span>
-        <span className="breadcrumb-sep">›</span>
-        <span>Ch1. Atoms & Chemical Bonds</span>
-        <span className="breadcrumb-sep">›</span>
-        <span style={{ color: 'var(--color-text)' }}>{meta.titleZh}</span>
-      </nav>
+      <div className="learn-two-col anim-fade-in">
 
-      {/* Page header */}
-      <div className="page-header">
-        <h1 className="page-title">{meta.title}</h1>
-        <p className="page-subtitle">{meta.titleZh}</p>
-        <div className="page-meta">
-          <span className="page-meta-item">⏱ 约 {meta.estimatedMinutes} 分钟</span>
-          <span className="difficulty-badge">{meta.difficulty}</span>
-          {isCompleted && <span style={{ fontSize: '0.8rem', color: '#16a34a', fontWeight: 500 }}>✅ 已完成</span>}
+        {/* ── Left: main content ── */}
+        <div className="learn-content-main">
+          <nav className="breadcrumb anim-fade-up anim-delay-1">
+            <Link to="/">Dashboard</Link>
+            <span className="breadcrumb-sep">›</span>
+            <span>Chemistry Fundamentals</span>
+            <span className="breadcrumb-sep">›</span>
+            <span>Ch1. Atoms & Chemical Bonds</span>
+            <span className="breadcrumb-sep">›</span>
+            <span style={{ color: 'var(--color-text)' }}>{meta.titleZh}</span>
+          </nav>
+
+          <div className="page-header anim-fade-up anim-delay-2">
+            <h1 className="page-title">{meta.title}</h1>
+            <p className="page-subtitle">{meta.titleZh}</p>
+          </div>
+
+          <p className="anim-fade-up anim-delay-3" style={{
+            fontSize: '0.82rem', color: 'var(--color-text-muted)',
+            marginBottom: '1.75rem',
+            borderLeft: '3px solid var(--color-border)', paddingLeft: '0.75rem',
+          }}>
+            💡 选中页面中的文字可以添加批注，点击右侧「批注」按钮打开批注面板。
+          </p>
+
+          <div id="content-main" ref={contentRef} onMouseUp={handleMouseUp}
+            className="anim-fade-up anim-delay-4">
+            <Ch1AtomicStructureContent />
+          </div>
+
+          {/* Quiz */}
+          <div style={{ marginTop: '2.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>✏️ Quick Check</h2>
+              {!showQuiz && (
+                <button
+                  onClick={() => setShowQuiz(true)}
+                  style={{
+                    padding: '0.4rem 1rem', background: '#eff6ff', color: 'var(--color-primary)',
+                    border: '1px solid #bfdbfe', borderRadius: '8px', cursor: 'pointer', fontSize: '0.85rem',
+                  }}
+                >
+                  开始测试 →
+                </button>
+              )}
+            </div>
+            {showQuiz && (
+              <QuickCheck
+                quiz={ch1QuickCheck}
+                onComplete={({ passed }) => { if (passed) setIsCompleted(true) }}
+              />
+            )}
+          </div>
+
+          {/* Bottom navigation */}
+          <div className="lesson-nav">
+            <div />
+            <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+              <button
+                className={`mark-complete-btn ${isCompleted ? 'done' : ''}`}
+                onClick={markComplete}
+                disabled={isCompleted}
+              >
+                {isCompleted ? '✅ 已完成' : '标记完成'}
+              </button>
+              {meta.next && (
+                <Link to={meta.next.path} className="lesson-nav-btn" style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }}>
+                  {meta.next.title} →
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
 
-      <p style={{ fontSize: '0.82rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem', borderLeft: '3px solid var(--color-border)', paddingLeft: '0.75rem' }}>
-        💡 选中页面中的文字可以添加批注，批注会保存在右侧面板中。
-      </p>
+        {/* ── Right: TOC aside ── */}
+        <div className="learn-aside anim-slide-right anim-delay-2">
+          <div className="learn-toc">
+            <div className="learn-toc-title">本章目录</div>
+            <ul className="learn-toc-list">
+              {TOC.map(sec => (
+                <li key={sec.id}>
+                  <button
+                    className={`learn-toc-item ${activeSection === sec.id ? 'active' : ''}`}
+                    onClick={() => scrollToSection(sec.id)}
+                  >
+                    {sec.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      {/* Main content — annotatable area */}
-      <div id="content-main" ref={contentRef} onMouseUp={handleMouseUp}>
-        <Ch1AtomicStructureContent />
-      </div>
-
-      {/* Quiz section */}
-      <div style={{ marginTop: '2.5rem' }}>
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          marginBottom: '1rem',
-        }}>
-          <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>
-            ✏️ Quick Check
-          </h2>
-          {!showQuiz && (
-            <button
-              onClick={() => setShowQuiz(true)}
-              style={{
-                padding: '0.4rem 1rem', background: '#eff6ff', color: 'var(--color-primary)',
-                border: '1px solid #bfdbfe', borderRadius: '8px', cursor: 'pointer', fontSize: '0.85rem',
-              }}
-            >
-              开始测试 →
-            </button>
-          )}
-        </div>
-        {showQuiz && (
-          <QuickCheck
-            quiz={ch1QuickCheck}
-            onComplete={({ passed }) => { if (passed) setIsCompleted(true) }}
-          />
-        )}
-      </div>
-
-      {/* Bottom navigation */}
-      <div className="lesson-nav">
-        <div />
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-          <button
-            className={`mark-complete-btn ${isCompleted ? 'done' : ''}`}
-            onClick={markComplete}
-            disabled={isCompleted}
-          >
-            {isCompleted ? '✅ 已完成' : '标记完成'}
-          </button>
-          {meta.next && (
-            <Link to={meta.next.path} className="lesson-nav-btn" style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }}>
-              {meta.next.title} →
-            </Link>
-          )}
+          <div className="learn-meta-card">
+            <div className="learn-meta-row">
+              <span>预计时长</span>
+              <span className="learn-meta-value">⏱ {meta.estimatedMinutes} min</span>
+            </div>
+            <div className="learn-meta-row">
+              <span>难度</span>
+              <span className="learn-meta-value">{meta.difficulty}</span>
+            </div>
+            <div className="learn-meta-row">
+              <span>状态</span>
+              <span className="learn-meta-value" style={isCompleted ? { color: '#16a34a' } : {}}>
+                {isCompleted ? '✅ 已完成' : '○ 未完成'}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Floating toolbar */}
       {toolbar && (
-        <div
-          className="annotation-toolbar"
-          style={{ left: toolbar.x, top: toolbar.y }}
-        >
+        <div className="annotation-toolbar" style={{ left: toolbar.x, top: toolbar.y }}>
           <button className="toolbar-btn primary" onClick={openInputBox}>✏️ 添加批注</button>
           <button className="toolbar-btn" onClick={() => { navigator.clipboard.writeText(toolbar.text); setToolbar(null) }}>复制</button>
           <button className="toolbar-btn" onClick={() => setToolbar(null)}>✕</button>
@@ -298,16 +344,12 @@ export default function AtomicStructure() {
 
       {/* Annotation input box */}
       {inputBox && (
-        <div
-          className="annotation-input-box"
-          style={{ left: inputBox.x, top: inputBox.y + 30 }}
-        >
+        <div className="annotation-input-box" style={{ left: inputBox.x, top: inputBox.y + 30 }}>
           <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginBottom: '0.5rem', fontStyle: 'italic' }}>
             "{inputBox.text.slice(0, 60)}{inputBox.text.length > 60 ? '…' : ''}"
           </div>
           <textarea
-            autoFocus
-            rows={3}
+            autoFocus rows={3}
             placeholder="写下你的批注…"
             value={inputNote}
             onChange={e => setInputNote(e.target.value)}
